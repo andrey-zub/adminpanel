@@ -15,9 +15,12 @@ class AppAdminController extends Controller
                          'rules' => [
                            [
                                'allow'   => false,
-                               'roles'   => ['@',]
+                               'roles'   => ['?','manager']
                            ],
-
+                           [
+                               'allow'   => true,
+                               'roles'   => ['admin']
+                           ],
 
                          ],
                      ],
