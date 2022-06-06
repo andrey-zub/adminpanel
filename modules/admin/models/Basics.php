@@ -80,7 +80,7 @@ public function getManagements()
 
 public function getPhones()
 {
-    return $this->hasMany(phones::className(), ['basic_id' => 'id']);
+    return $this->hasMany(Phones::className(), ['basic_id' => 'id']);
 }
 
 public function getEmails()

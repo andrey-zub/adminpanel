@@ -61,7 +61,6 @@ class BasicsSearch extends Basics
 
         $query->with([
           'ratings',
-          'ratings',
           'managements',
           'phones',
           'emails',

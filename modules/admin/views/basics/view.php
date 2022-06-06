@@ -55,6 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute'=>'ratings.comment',
               'value' => implode('.   ',\yii\helpers\ArrayHelper::map($model->ratings, 'id', 'comment')),
             ],
+            'managements.gen_dir',
 
 
 
