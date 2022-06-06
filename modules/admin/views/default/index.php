@@ -16,13 +16,10 @@ $this->params['breadcrumbs'][] = array(
 
 
 ?>
-
-
 <div class="admin-default-index">
  <h3>Административный модуль</h3>
 
     <div class="body-content">
-
         <div class="row">
             <div class="col-lg-4">
                 <h2>Сотрудники</h2>
@@ -31,6 +28,7 @@ $this->params['breadcrumbs'][] = array(
 
                 <p><a class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl(['admin/employee'])?>">Перейти</a></p>
             </div>
+
             <div class="col-lg-4">
                 <h2>Товар</h2>
 
