@@ -22,22 +22,14 @@ class BasicsSearch extends Basics
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
+
     public function search($params)
     {
         $query = Basics::find();
@@ -46,6 +38,11 @@ class BasicsSearch extends Basics
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                 'forcePageParam' => false,
+                 'pageSizeParam' => false,
+                'pageSize' => 10
+            ]
         ]);
 
         $this->load($params);
@@ -59,6 +56,11 @@ class BasicsSearch extends Basics
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+        ]);
+
+
+        $query->with([
+          'ratings',
         ]);
 
         $query->andFilterWhere(['like', 'org_name', $this->org_name])
@@ -77,6 +79,14 @@ class BasicsSearch extends Basics
             ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
             ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
             ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+
+          //--------------------------------------------------------------------------------------- Связанные поля ------------------------
+
+          // ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+
+
+
+
 
         return $dataProvider;
     }

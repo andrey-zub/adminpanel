@@ -27,17 +27,13 @@ use Yii;
  */
 class Basics extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return 'basics';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function rules()
     {
         return [
@@ -45,9 +41,7 @@ class Basics extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function attributeLabels()
     {
         return [
@@ -70,4 +64,18 @@ class Basics extends \yii\db\ActiveRecord
             'main_activity_text' => 'Main Activity Text',
         ];
     }
+
+// -----------------------------СВЯЗИ С ДРУГИМИ ТАБЛИЦАМИ------------------------------------
+
+
+public function getRatings()
+{
+    return $this->hasMany(Ratings::className(), ['basic_id' => 'id']);
+}
+
+
+
+
+
+
 }

@@ -8,15 +8,17 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Basics';
-$this->params['breadcrumbs'][] = $this->title;
+  $this->params['breadcrumbs'][] = array(
+      'label'=> 'Admin panel',
+      'url'=>Yii::$app->urlManager->createUrl(['admin/'])
+  );
+    $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="basics-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Basics', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -35,18 +37,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'kpp',
             'okpp',
             'main_activity_num',
-            
-            'date_reg',
-            'name_eng',
-            'ur_addr',
-            'org_prav_form',
-            'ust_cap',
-            'spec_nlg_rej',
-            'avg_workers',
-            'ceil_reg',
-            'main_activity_text',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // 'date_reg',
+            // 'name_eng',
+            // 'ur_addr',
+            // 'org_prav_form',
+            // 'ust_cap',
+            // 'spec_nlg_rej',
+            // 'avg_workers',
+            // 'ceil_reg',
+            // 'main_activity_text',
+
+            [
+              'class' => 'yii\grid\ActionColumn',
+              'template'=> '{view}',
+            ],
         ],
     ]); ?>
 

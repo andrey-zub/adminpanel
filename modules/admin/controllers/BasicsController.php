@@ -85,10 +85,10 @@ class BasicsController extends AppAdminController
         return $this->redirect(['index']);
     }
 
-    
+
     protected function findModel($id)
     {
-        if (($model = Basics::findOne($id)) !== null) {
+        if (($model = BasicsSearch::findOne($id)) !== null) {
             return $model;
         }
 

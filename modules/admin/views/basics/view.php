@@ -46,6 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'ceil_reg',
             'main_activity_num',
             'main_activity_text',
+            //------------------------------------
+            [
+              'attribute'=>'ratings.mark',
+              'value' => implode('.  ',\yii\helpers\ArrayHelper::map($model->ratings, 'id', 'mark')),
+            ]
+
         ],
     ]) ?>
 
