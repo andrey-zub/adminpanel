@@ -61,6 +61,34 @@ class BasicsSearch extends Basics
 
         $query->with([
           'ratings',
+          'ratings',
+          'managements',
+          'phones',
+          'emails',
+          'sites',
+          'activities',
+          'activities_links',
+          'trademarks_liks',
+          'connections_links',
+          'predecessors_links',
+          'successors_links',
+          'branches',
+          'predecessors',
+          'successors',
+          'customers',
+          'customer_links',
+          'sellers',
+          'seller_links',
+          'founder_urs',
+          'founder_foreigns',
+          'financial_indicators',
+          'financial_indicator_links',
+          'financial_stabilities',
+          'license_links',
+          'connections',
+          'trademarks',
+          'enforcement_proceedings'
+
         ]);
 
         $query->andFilterWhere(['like', 'org_name', $this->org_name])

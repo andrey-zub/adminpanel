@@ -73,6 +73,150 @@ public function getRatings()
     return $this->hasMany(Ratings::className(), ['basic_id' => 'id']);
 }
 
+public function getManagements()
+{
+    return $this->hasMany(Managements::className(), ['basic_id' => 'id']);
+}
+
+public function getPhones()
+{
+    return $this->hasMany(phones::className(), ['basic_id' => 'id']);
+}
+
+public function getEmails()
+{
+    return $this->hasMany(Emails::className(), ['basic_id' => 'id']);
+}
+
+public function getSites()
+{
+    return $this->hasMany(Sites::className(), ['basic_id' => 'id']);
+}
+
+public function getActivities()
+{
+    return $this->hasMany(Activities::className(), ['basic_id' => 'id']);
+}
+
+public function getActivitiesLinks()
+{
+    return $this->hasMany(ActivitiesLinks::className(), ['basic_id' => 'id']);
+}
+
+public function Trademarks()
+{
+    return $this->hasMany(Trademarks::className(), ['basic_id' => 'id']);
+}
+
+public function TrademarksLinks()
+{
+    return $this->hasMany(TrademarksLinks::className(), ['basic_id' => 'id']);
+}
+
+
+public function getConnections()
+{
+    return $this->hasMany(Connections::className(), ['basic_id' => 'id']);
+}
+
+public function getConnectionsLinks()
+{
+    return $this->hasMany(ConnectionsLinks::className(), ['basic_id' => 'id']);
+}
+
+public function getPredecessors()
+{
+    return $this->hasMany(Predecessors::className(), ['basic_id' => 'id']);
+}
+
+public function getPredecessorsLinks()
+{
+    return $this->hasMany(PredecessorsLinks::className(), ['basic_id' => 'id']);
+}
+
+public function getSuccessors()
+{
+    return $this->hasMany(Successors::className(), ['basic_id' => 'id']);
+}
+
+
+public function getSuccessorsLinks()
+{
+    return $this->hasMany(SuccessorsLinks::className(), ['basic_id' => 'id']);
+}
+
+public function getBranches()
+{
+    return $this->hasMany(Branches::className(), ['basic_id' => 'id']);
+}
+
+public function getCustomers()
+{
+    return $this->hasMany(Customers::className(), ['basic_id' => 'id']);
+}
+
+public function getCustomerLinks()
+{
+    return $this->hasMany(CustomerLinks::className(), ['basic_id' => 'id']);
+}
+
+public function getSellers()
+{
+    return $this->hasMany(Sellers::className(), ['basic_id' => 'id']);
+}
+
+public function getSellerLinks()
+{
+    return $this->hasMany(SellerLinks::className(), ['basic_id' => 'id']);
+}
+
+public function getFounderUrs()
+{
+    return $this->hasMany(FounderUrs::className(), ['basic_id' => 'id']);
+}
+
+public function getFounderForeigns()
+{
+    return $this->hasMany(FounderForeigns::className(), ['basic_id' => 'id']);
+}
+
+public function getFinancialIndicators()
+{
+    return $this->hasMany(FinancialIndicators::className(), ['basic_id' => 'id']);
+}
+
+public function getFinancialIndicatorLinks()
+{
+    return $this->hasMany(FinancialIndicatorLinks::className(), ['basic_id' => 'id']);
+}
+
+public function getFinancialStabilities()
+{
+    return $this->hasMany(FinancialStabilities::className(), ['basic_id' => 'id']);
+}
+
+public function getLicenseLinks()
+{
+    return $this->hasMany(LicenseLinks::className(), ['basic_id' => 'id']);
+}
+
+public function getEnforcement_proceedings()
+{
+    return $this->hasMany(Enforcement_proceedings::className(), ['basic_id' => 'id']);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

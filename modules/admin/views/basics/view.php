@@ -46,11 +46,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'ceil_reg',
             'main_activity_num',
             'main_activity_text',
-            //------------------------------------
+            //------------------------------------связанные поля--------------------------------
             [
               'attribute'=>'ratings.mark',
               'value' => implode('.  ',\yii\helpers\ArrayHelper::map($model->ratings, 'id', 'mark')),
-            ]
+            ],
+            [
+              'attribute'=>'ratings.comment',
+              'value' => implode('.   ',\yii\helpers\ArrayHelper::map($model->ratings, 'id', 'comment')),
+            ],
+
+
+
+
+
+
+
 
         ],
     ]) ?>
