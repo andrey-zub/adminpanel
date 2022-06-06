@@ -65,6 +65,8 @@ class SiteController extends Controller
 // //        $session->destroy();
 //       $session->open();
 
+  
+
         return $this->render('index');
     }
 
@@ -115,7 +117,7 @@ class SiteController extends Controller
 }
 
 
-  
+
 
 
 

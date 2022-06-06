@@ -23,6 +23,7 @@ $this->title = 'home /...';
                 <div class="row">
                   <h2>Панель администратора </h2>
                   <p>Страница для работы с таблицей  [ Basic ] </p>
+                  <p>{ Для перехода на страницу необходима авторизоваться под учетной записью администратора }</p>
                   <p><a class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl(['admin/'])?>">Перейти</a></p>
                 </div>
               </div>
