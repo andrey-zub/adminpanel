@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Basics */
 
-$this->title = $model->id;
+$this->title = "basic #$model->id";
 $this->params['breadcrumbs'][] = ['label' => 'Basics', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -68,29 +68,200 @@ $this->params['breadcrumbs'][] = $this->title;
               'value' => implode('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir')),
             ],
             [
+              'label'=>'Phone',
               'attribute'=>'phones.number',
               'value' => implode(',   ',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number')),
             ],
             [
               'label'=>'Email',
               'attribute'=>'emails.addr',
-              'value' => implode(',   ',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr')),
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr')),
             ],
             [
-              'label'=>'activity num'
+              'label'=>'Activity num',
               'attribute'=>'activities.num',
-              'value' => implode(',   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num')),
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num')),
             ],
             [
-              'label'=>'activity',
+              'label'=>'Activity',
               'attribute'=>'activities.text',
               'value' => implode('.   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text')),
             ],
+
             [
-              'label'=>'',
-              'attribute'=>'',
-              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', '')),
+              'label'=>'Site ',
+              'attribute'=>'sites.addr',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr')),
             ],
+
+            [
+              'label'=>'Activity link',
+              'attribute'=>'activities_links.link',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link')),
+            ],
+
+            [
+              'label'=>'Trademark text',
+              'attribute'=>'trademarks.text',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->trademarks, 'id', 'text')),
+            ],
+            [
+              'label'=>'Trademark link',
+              'attribute'=>'trademarks.link',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->trademarks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Trademark_links link',
+              'attribute'=>'trademarks_links.link',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->trademarksLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Connections title',
+              'attribute'=>'connections.title',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->connections, 'id', 'title')),
+            ],
+            [
+              'label'=>'Connections text',
+              'attribute'=>'connections.text',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->connections, 'id', 'text')),
+            ],
+            [
+              'label'=>'Connections link',
+              'attribute'=>'connections_links.link',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->connectionsLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Predecessors',
+              'attribute'=>'predecessors.text',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->predecessors, 'id', 'text')),
+            ],
+            [
+              'label'=>'Predecessors link',
+              'attribute'=>'predecessors_links.link',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->predecessorsLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Successors',
+              'attribute'=>'successors.text',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->successors, 'id', 'text')),
+            ],
+            [
+              'label'=>'Successors link',
+              'attribute'=>'successors_links.link',
+              'value' => implode('  [----];   ',\yii\helpers\ArrayHelper::map($model->successorsLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Customer fz',
+              'attribute'=>'customers.fz',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->customers, 'id', 'fz')),
+            ],
+            [
+              'label'=>'Customer contract',
+              'attribute'=>'customers.contract',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->customers, 'id', 'contract')),
+            ],
+            [
+              'label'=>'Customer count',
+              'attribute'=>'customers.count',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->customers, 'id', 'count')),
+            ],
+            [
+              'label'=>'Customer link',
+              'attribute'=>'customer_links.link',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->customerLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Branches',
+              'attribute'=>'branches.text',
+              'value' => implode('  [----];    ',\yii\helpers\ArrayHelper::map($model->branches, 'id', 'text')),
+            ],
+            [
+              'label'=>'Sellers fz',
+              'attribute'=>'sellers.fz',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->sellers, 'id', 'fz')),
+            ],
+            [
+              'label'=>'Seller contract',
+              'attribute'=>'sellers.contract',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->sellers, 'id', 'contract')),
+            ],
+            [
+              'label'=>'Seller count',
+              'attribute'=>'sellers.count',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->sellers, 'id', 'count')),
+            ],
+            [
+              'label'=>'Seller link',
+              'attribute'=>'seller_links.link',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->sellerLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Founder Urs founder',
+              'attribute'=>'founder_urs.founder',
+              'value' => implode('  [----];     ',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'founder')),
+            ],
+            [
+              'label'=>'Founder Urs cost',
+              'attribute'=>'founder_urs.cost',
+              'value' => implode('  [----];     ',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'cost')),
+            ],
+            [
+              'label'=>'Founder Urs capital',
+              'attribute'=>'founder_urs.capital',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'capital')),
+            ],
+            [
+              'label'=>'Founder foreigns founder',
+              'attribute'=>'founder_foreigns.founder',
+              'value' => implode('  [----];     ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'founder')),
+            ],
+            [
+              'label'=>'Founder foreigns cost',
+              'attribute'=>'founder_foreigns.cost',
+              'value' => implode('  [----];     ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'cost')),
+            ],
+            [
+              'label'=>'Founder foreigns capital',
+              'attribute'=>'founder_foreigns.capital',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'capital')),
+            ],
+            [
+              'label'=>'Financial indicator ',
+              'attribute'=>'financial_indicator.text',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->financialIndicators, 'id', 'text')),
+            ],
+            [
+              'label'=>'Financial indicator link',
+              'attribute'=>'financial_indicator_links.link',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->financialIndicatorLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Financial stabilties ',
+              'attribute'=>'financial_stabilties.text',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->financialStabilities, 'id', 'text')),
+            ],
+            [
+              'label'=>'License link ',
+              'attribute'=>'license_links.link',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->licenseLinks, 'id', 'link')),
+            ],
+            [
+              'label'=>'Enforcement proceedings title',
+              'attribute'=>'enforcement_proceedings.title',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id', 'title')),
+            ],
+            [
+              'label'=>'Enforcement proceedings count',
+              'attribute'=>'enforcement_proceedings.count',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id', 'count')),
+            ],
+            [
+              'label'=>'Enforcement proceedings link',
+              'attribute'=>'enforcement_proceedings.link',
+              'value' => implode(' ;     ',\yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id', 'link')),
+            ],
+
+
 
 
 
