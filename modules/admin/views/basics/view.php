@@ -7,6 +7,14 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\admin\models\Basics */
 
 $this->title = "basic #$model->id";
+$this->params['breadcrumbs'][] = array(
+    'label'=> 'Admin panel',
+    'url'=>Yii::$app->urlManager->createUrl(['admin/'])
+);
+$this->params['breadcrumbs'][] = array(
+    'label'=> 'Basic Ips',
+    'url'=>Yii::$app->urlManager->createUrl(['admin/basic-ips'])
+);
 $this->params['breadcrumbs'][] = ['label' => 'Basics', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

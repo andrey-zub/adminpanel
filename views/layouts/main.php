@@ -45,8 +45,8 @@ AppAsset::register($this);
               'label' => 'menu',
               'items' => [
 
-                   ['label' => 'Admin menu ', 'url' => ['/admin']],
-                  
+                   ['label' => 'Admin panel ', 'url' => ['/admin']],
+
 
 
               ],

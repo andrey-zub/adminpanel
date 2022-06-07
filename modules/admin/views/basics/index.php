@@ -12,6 +12,10 @@ $this->title = 'Basics';
       'label'=> 'Admin panel',
       'url'=>Yii::$app->urlManager->createUrl(['admin/'])
   );
+  $this->params['breadcrumbs'][] = array(
+      'label'=> 'Basic Ips',
+      'url'=>Yii::$app->urlManager->createUrl(['admin/basic-ips'])
+  );
     $this->params['breadcrumbs'][] = $this->title;
 
 ?>

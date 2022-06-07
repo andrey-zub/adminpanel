@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = array(
 
                  <p>Страница для работы с таблицей [ basicIp ]</p>
 
-                 <p><a class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl(['admin/basic'])?>">Перейти</a></p>
+                 <p><a class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl(['admin/basic-ips'])?>">Перейти</a></p>
              </div>
 
          </div>

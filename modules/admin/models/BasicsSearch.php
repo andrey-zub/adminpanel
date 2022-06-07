@@ -87,7 +87,6 @@ class BasicsSearch extends Basics
           'connections',
           'trademarks',
           'enforcementProceedings'
-
         ]);
 
         $query->andFilterWhere(['like', 'org_name', $this->org_name])
