@@ -66,27 +66,27 @@ class BasicsSearch extends Basics
           'emails',
           'sites',
           'activities',
-          'activities_links',
-          'trademarks_liks',
-          'connections_links',
-          'predecessors_links',
-          'successors_links',
+          'activitiesLinks',
+          'trademarksLinks',
+          'connectionsLinks',
+          'predecessorsLinks',
+          'successorsLinks',
           'branches',
           'predecessors',
           'successors',
           'customers',
-          'customer_links',
+          'customerLinks',
           'sellers',
-          'seller_links',
-          'founder_urs',
-          'founder_foreigns',
-          'financial_indicators',
-          'financial_indicator_links',
-          'financial_stabilities',
-          'license_links',
+          'sellerLinks',
+          'founderUrs',
+          'founderForeigns',
+          'financialIndicators',
+          'financialIndicatorLinks',
+          'financialStabilities',
+          'licenseLinks',
           'connections',
           'trademarks',
-          'enforcement_proceedings'
+          'enforcementProceedings'
 
         ]);
 
@@ -107,9 +107,8 @@ class BasicsSearch extends Basics
             ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
             ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
 
-          //--------------------------------------------------------------------------------------- Связанные поля ------------------------
 
-          // ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+
 
 
 

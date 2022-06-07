@@ -103,12 +103,12 @@ public function getActivitiesLinks()
     return $this->hasMany(ActivitiesLinks::className(), ['basic_id' => 'id']);
 }
 
-public function Trademarks()
+public function getTrademarks()
 {
     return $this->hasMany(Trademarks::className(), ['basic_id' => 'id']);
 }
 
-public function TrademarksLinks()
+public function getTrademarksLinks()
 {
     return $this->hasMany(TrademarksLinks::className(), ['basic_id' => 'id']);
 }
