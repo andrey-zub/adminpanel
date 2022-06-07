@@ -200,9 +200,9 @@ public function getLicenseLinks()
     return $this->hasMany(LicenseLinks::className(), ['basic_id' => 'id']);
 }
 
-public function getEnforcement_proceedings()
+public function getEnforcementProceedings()
 {
-    return $this->hasMany(Enforcement_proceedings::className(), ['basic_id' => 'id']);
+    return $this->hasMany(EnforcementProceedings::className(), ['basic_id' => 'id']);
 }
 
 

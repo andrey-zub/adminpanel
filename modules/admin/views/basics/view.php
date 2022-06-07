@@ -67,8 +67,30 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute'=>'managements.date_gen_dir',
               'value' => implode('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir')),
             ],
-
-
+            [
+              'attribute'=>'phones.number',
+              'value' => implode(',   ',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number')),
+            ],
+            [
+              'label'=>'Email',
+              'attribute'=>'emails.addr',
+              'value' => implode(',   ',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr')),
+            ],
+            [
+              'label'=>'activity num'
+              'attribute'=>'activities.num',
+              'value' => implode(',   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num')),
+            ],
+            [
+              'label'=>'activity',
+              'attribute'=>'activities.text',
+              'value' => implode('.   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text')),
+            ],
+            [
+              'label'=>'',
+              'attribute'=>'',
+              'value' => implode(';   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', '')),
+            ],
 
 
 

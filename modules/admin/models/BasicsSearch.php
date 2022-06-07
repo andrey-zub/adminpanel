@@ -109,11 +109,6 @@ class BasicsSearch extends Basics
 
 
 
-
-
-
-
-
         return $dataProvider;
     }
 }
