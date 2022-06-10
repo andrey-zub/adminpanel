@@ -17,7 +17,9 @@ $config = [
                 'class' =>  'app\modules\admin\Module',
               ],
 
-            
+              'gridview' => [  'class' => 'kartik\grid\Module',]
+
+
             ],
 
 

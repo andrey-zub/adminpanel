@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'main_activity_text:ntext',
 
 //----------------------------Связанные поля--------------------------------------------------
-                      [
+            [
               'label'=>'Activity ips',
               'attribute'=>'activity_ips.text',
               'value' => implode('.  ',\yii\helpers\ArrayHelper::map($model->activityIps, 'id', 'text')),
