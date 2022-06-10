@@ -71,7 +71,7 @@ AppAsset::register($this);
     ]);
 
 
-         echo \app\components\CartWidget::widget();
+         
 
 
     NavBar::end();
