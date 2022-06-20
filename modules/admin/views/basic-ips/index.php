@@ -182,7 +182,7 @@ use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 // use kartik\helpers\Html;
 $fullExportMenu = ExportMenu::widget([
-    'dataProvider' => $dataProviderExport,
+    'dataProvider' => $dataProvider,
     'columns' => $exportColumns,
     'filename' => "basic_ips ($date)",
     'target' => ExportMenu::TARGET_POPUP,

@@ -39,14 +39,14 @@ class BasicIpsController extends Controller
         $searchModel = new BasicIpsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $exportModel = new BasicIpsExport();
-        $dataProviderExport = $exportModel->search(Yii::$app->request->queryParams);
+        // $exportModel = new BasicIpsExport();
+        // $dataProviderExport = $exportModel->search(Yii::$app->request->queryParams);
 
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'dataProviderExport' => $dataProviderExport,
+            // 'dataProviderExport' => $dataProviderExport,
 
         ]);
     }
