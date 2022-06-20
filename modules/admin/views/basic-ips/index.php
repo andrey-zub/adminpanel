@@ -1,9 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+// use yii\grid\GridView;
+// use kartik\export\ExportMenu;
 use yii\widgets\Pjax;
-use kartik\export\ExportMenu;
+
+
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\BasicIpsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -150,20 +153,90 @@ $this->params['breadcrumbs'][] = $this->title;
           ],
 
     ];
+    //
+    // // Renders a export dropdown menu
+    // echo ExportMenu::widget([
+    //     'dataProvider' => $dataProviderExport,
+    //     'columns' => $exportColumns,
+    //     'clearBuffers' => true, //optional
+    //     'filename'=>'Basics_ips',
+    //      // 'batchSize' => 100,
+    //
+    // ]);
+    //
+    // // You can choose to render your own GridView separately
+    // echo \kartik\grid\GridView::widget([
+    //     'dataProvider' => $dataProvider,
+    //     'filterModel' => $searchModel,
+    //     'columns' => $gridColumns,
+    //
+    // ]);
 
-    // Renders a export dropdown menu
-    echo ExportMenu::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => $exportColumns,
-        'clearBuffers' => true, //optional
-    ]);
 
-    // You can choose to render your own GridView separately
-    echo \kartik\grid\GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => $gridColumns
-    ]);
+$date = date('m/d/Y h:i:s a', time());
+
+
+//=--------------------------------------------------------------------------------------------------------------------------
+
+use kartik\export\ExportMenu;
+use kartik\grid\GridView;
+// use kartik\helpers\Html;
+$fullExportMenu = ExportMenu::widget([
+    'dataProvider' => $dataProviderExport,
+    'columns' => $exportColumns,
+    'filename' => "basic_ips ($date)",
+    'target' => ExportMenu::TARGET_POPUP,
+    'pjaxContainerId' => 'kv-pjax-container',
+    'exportContainer' => [
+        'class' => 'btn-group mr-2 me-2'
+    ],
+    'dropdownOptions' => [
+        'label' => 'Full',
+        'class' => 'btn btn-outline-secondary btn-default',
+        'itemsBefore' => [
+            '<div class="dropdown-header">Export All Data</div>',
+        ],
+    ],
+]);
+echo \kartik\grid\GridView::widget([
+  'dataProvider' => $dataProvider,
+      'filterModel' => $searchModel,
+      'columns' => $gridColumns,
+    'pjax' => true,
+    'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container']],
+    'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<h1 class="panel-title"><i class="fas fa-book"></i> ИП </h3>',
+    ],
+    // set a label for default menu
+    'export' => [
+        'label' => 'Page',
+    ],
+    'exportContainer' => [
+        'class' => 'btn-group mr-2 me-2'
+    ],
+    // your toolbar can include the additional full export menu
+    'toolbar' => [
+        '{export}',
+        $fullExportMenu,
+
+    ]
+]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
  ?>
     <?php Pjax::end(); ?>
 </div>

@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\BasicIps;
 use app\modules\admin\models\BasicIpsSearch;
+use app\modules\admin\models\BasicIpsExport;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,9 +39,15 @@ class BasicIpsController extends Controller
         $searchModel = new BasicIpsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $exportModel = new BasicIpsExport();
+        $dataProviderExport = $exportModel->search(Yii::$app->request->queryParams);
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'dataProviderExport' => $dataProviderExport,
+
         ]);
     }
 
@@ -75,13 +82,7 @@ class BasicIpsController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing BasicIps model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -95,13 +96,7 @@ class BasicIpsController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing BasicIps model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -109,13 +104,7 @@ class BasicIpsController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the BasicIps model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return BasicIps the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     protected function findModel($id)
     {
         if (($model = BasicIpsSearch::findOne($id)) !== null) {

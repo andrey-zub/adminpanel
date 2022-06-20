@@ -4,13 +4,15 @@ namespace app\modules\admin\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
 use app\modules\admin\models\BasicIps;
 use Yii;
+
 
 /**
  * BasicIpsSearch represents the model behind the search form of `app\modules\admin\models\BasicIps`.
  */
-class BasicIpsSearch extends BasicIps
+class BasicIpsExport extends BasicIps
 {
     /**
      * {@inheritdoc}
@@ -35,11 +37,15 @@ class BasicIpsSearch extends BasicIps
 
     public function search($params)
     {
-      Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
-        $limit = 100;
+
+        Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+
+
 
         $query = BasicIps::find();
+          $limit = 100;
               $query->limit($limit);
+
 
         // add conditions that should always apply here
 
@@ -49,8 +55,9 @@ class BasicIpsSearch extends BasicIps
                  'forcePageParam' => false,
                  'pageSizeParam' => false,
                 'pageSize' => $limit,
+                'totalCount' => $query->count()
             ]
-            //
+
             // 'pagination' => false,
         ]);
 
@@ -65,18 +72,18 @@ class BasicIpsSearch extends BasicIps
 //----------------------------------------------------------------------
 
 
-  // $query->with([
-  //   'activityIps',
-  //   'activitiesLinkIps',
-  //   'connectionIps',
-  //   'customerIps',
-  //   'customerLinkIps',
-  //   'legalCases',
-  //   'legalCaseLinks',
-  //   'phoneIps',
-  //   'emailIps',
-  //   'siteIps',
-  // ]);
+  $query->with([
+    'activityIps',
+    'activitiesLinkIps',
+    'connectionIps',
+    'customerIps',
+    'customerLinkIps',
+    'legalCases',
+    'legalCaseLinks',
+    'phoneIps',
+    'emailIps',
+    'siteIps',
+  ]);
 
   // grid filtering conditions
   $query->andFilterWhere([
@@ -96,6 +103,23 @@ class BasicIpsSearch extends BasicIps
       ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
       ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
       ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+
+
+
+
+
+
+
+Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+
+
+
+
+
+
+
+
+
 
 
 

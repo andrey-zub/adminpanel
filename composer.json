@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "qiwi/bill-payments-php-sdk": "^0.2.2",
-        "kartik-v/yii2-export": "@dev"
+        "kartik-v/yii2-export": "@dev",
+        "kartik-v/yii2-grid": "dev-master",
+        "kartik-v/yii2-helpers": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
