@@ -163,7 +163,7 @@ $fullExportMenu = ExportMenu::widget([
         'class' => 'btn-group mr-2 me-2'
     ],
     'dropdownOptions' => [
-        'label' => 'Full',
+        'label' => 'Export (1-50)',
         'class' => 'btn btn-outline-secondary btn-default',
         'itemsBefore' => [
             '<div class="dropdown-header">Export All Data</div>',
