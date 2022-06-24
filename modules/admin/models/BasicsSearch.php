@@ -5,6 +5,8 @@ namespace app\modules\admin\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\modules\admin\models\Basics;
+use Yii;
+
 
 /**
  * BasicsSearch represents the model behind the search form of `app\modules\admin\models\Basics`.
@@ -32,18 +34,26 @@ class BasicsSearch extends Basics
 
     public function search($params)
     {
+      Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+        $limit = 50;
+
         $query = Basics::find();
+              $query->limit($limit);
 
         // add conditions that should always apply here
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                 'forcePageParam' => false,
-                 'pageSizeParam' => false,
-                'pageSize' => 10
-            ]
-        ]);
+
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [
+                         'forcePageParam' => false,
+                         'pageSizeParam' => false,
+                        'pageSize' => $limit,
+                    ]
+                    //
+                    // 'pagination' => false,
+                ]);
+
 
         $this->load($params);
 

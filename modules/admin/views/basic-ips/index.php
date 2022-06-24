@@ -15,7 +15,7 @@ use kartik\grid\GridView;
 $this->title = 'ИП';
 
 $this->params['breadcrumbs'][] = array(
-    'label'=> 'Basic',
+    'label'=> 'Организации',
     'url'=>Yii::$app->urlManager->createUrl(['admin/basics'])
 );
 $this->params['breadcrumbs'][] = $this->title;

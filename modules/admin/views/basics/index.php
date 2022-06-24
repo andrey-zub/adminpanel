@@ -1,20 +1,16 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+// use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\export\ExportMenu;
-/* @var $this yii\web\View */
-/* @var $searchModel app\modules\admin\models\BasicsSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use kartik\grid\GridView;
+// use kartik\helpers\Html;
 
-$this->title = 'Basics';
+$this->title = 'Организации';
+
   $this->params['breadcrumbs'][] = array(
-      'label'=> 'Admin panel',
-      'url'=>Yii::$app->urlManager->createUrl(['admin/'])
-  );
-  $this->params['breadcrumbs'][] = array(
-      'label'=> 'Basic Ips',
+      'label'=> 'ИП',
       'url'=>Yii::$app->urlManager->createUrl(['admin/basic-ips'])
   );
     $this->params['breadcrumbs'][] = $this->title;
@@ -28,32 +24,14 @@ $this->title = 'Basics';
 <?
     Pjax::begin();
 
-    $gridColumns = [
-      'id',
-      'org_name',
-      'status',
-      'ogrn',
-      'inn',
-      'kpp',
-      'okpp',
-      'main_activity_num',
-      'date_reg',
-      'name_eng',
-      'ur_addr',
-      'org_prav_form',
-      'ust_cap',
-      'spec_nlg_rej',
-      'avg_workers',
-      'ceil_reg',
-      'main_activity_text',
-            ['class' => 'yii\grid\SerialColumn'],
-            [
-              'class' => 'yii\grid\ActionColumn',
-              'template'=>'{view}'
-            ],
-    ];
 
-    $exportColumns = [
+
+    $gridColumns = [
+      ['class' => 'yii\grid\SerialColumn'],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}'
+        ],
       'id',
       'org_name',
       'status',
@@ -71,7 +49,7 @@ $this->title = 'Basics';
        'avg_workers',
        'ceil_reg',
        'main_activity_text',
-      
+
           [
             'attribute'=>'ratings.mark',
             'value' => function($model) { return join('.  ',\yii\helpers\ArrayHelper::map($model->ratings, 'id', 'mark'));},
@@ -286,29 +264,68 @@ $this->title = 'Basics';
             'value' => function($model) { return join(' ;     ',\yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id', 'link'));},
           ],
 
-
-
-
-
-
-
     ];
 
-    // Renders a export dropdown menu
-    echo ExportMenu::widget([
+
+
+    $date = date('m/d/Y h:i:s a', time());
+
+
+    //=--------------------------------------------------------------------------------------------------------------------------
+
+
+    $fullExportMenu = ExportMenu::widget([
         'dataProvider' => $dataProvider,
-        'columns' => $exportColumns,
-        'clearBuffers' => true, //optional
+        'columns' => $gridColumns,
+         // 'batchSize'=>50,
+        'clearBuffers' => true,
+
+        'filename' => "ОРГАНИЗАЦИИ_($date)",
+        'target' => ExportMenu::TARGET_POPUP,
+        'pjaxContainerId' => 'kv-pjax-container',
+        'exportContainer' => [
+            'class' => 'btn-group mr-2 me-2'
+        ],
+        'dropdownOptions' => [
+            'label' => 'Full',
+            'class' => 'btn btn-outline-secondary btn-default',
+            'itemsBefore' => [
+                '<div class="dropdown-header">Export All Data</div>',
+            ],
+        ],
     ]);
 
-    // You can choose to render your own GridView separately
+
+
     echo \kartik\grid\GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => $gridColumns
+      'dataProvider' => $dataProvider,
+          'filterModel' => $searchModel,
+          'columns' => $gridColumns,
+
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<h1 class="panel-title"> Basic_ips </h3>',
+        ],
+        // set a label for default menu
+        'export' => [
+            'label' => 'Page',
+        ],
+        'exportContainer' => [
+            'class' => 'btn-group mr-2 me-2'
+        ],
+        // your toolbar can include the additional full export menu
+        'toolbar' => [
+            '{export}',
+            $fullExportMenu,
+
+        ]
     ]);
-?>
 
-    <?php Pjax::end(); ?>
 
-</div>
+    //------------------------------------------------------------------------------------------------------
+
+     ?>
+        <?php Pjax::end(); ?>
+    </div>
