@@ -277,7 +277,7 @@ $this->title = 'Организации';
     $fullExportMenu = ExportMenu::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumns,
-         // 'batchSize'=>50,
+          'batchSize'=>50,
         'clearBuffers' => true,
 
         'filename' => "ОРГАНИЗАЦИИ_($date)",
@@ -306,7 +306,7 @@ $this->title = 'Организации';
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<h1 class="panel-title"> Basic_ips </h3>',
+            'heading' => '<h1 class="panel-title"> Basics </h3>',
         ],
         // set a label for default menu
         'export' => [
