@@ -2,20 +2,18 @@
 
 use yii\helpers\Html;
 // use yii\grid\GridView;
-// use kartik\export\ExportMenu;
 use yii\widgets\Pjax;
-
+use kartik\export\ExportMenu;
+use kartik\grid\GridView;
+// use kartik\helpers\Html;
 
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\BasicIpsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Basic Ips';
-$this->params['breadcrumbs'][] = array(
-    'label'=> 'Admin panel',
-    'url'=>Yii::$app->urlManager->createUrl(['admin/'])
-);
+$this->title = 'ИП';
+
 $this->params['breadcrumbs'][] = array(
     'label'=> 'Basic',
     'url'=>Yii::$app->urlManager->createUrl(['admin/basics'])
@@ -32,25 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <?
-    $gridColumns = [
-        'id',
-        'name_ip:ntext',
-        'status',
-        'ogrn',
-        'inn',
-        'okpp',
-        'main_activity_num',
-          //'full_name_ip:ntext',
-          //'date_reg',
-          //'ceil_reg',
-            ['class' => 'yii\grid\SerialColumn'],
-            [
-              'class' => 'yii\grid\ActionColumn',
-              'template'=>'{view}'
-            ],
-    ];
 
-    $exportColumns = [
+
+    $gridColumns = [
+      ['class' => 'yii\grid\SerialColumn'],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}'
+        ],
         'id',
         'name_ip:ntext',
         'status',
@@ -152,25 +139,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->siteIps, 'id', 'addr')); },
           ],
 
+          ['class' => 'yii\grid\SerialColumn'],
     ];
-    //
-    // // Renders a export dropdown menu
-    // echo ExportMenu::widget([
-    //     'dataProvider' => $dataProviderExport,
-    //     'columns' => $exportColumns,
-    //     'clearBuffers' => true, //optional
-    //     'filename'=>'Basics_ips',
-    //      // 'batchSize' => 100,
-    //
-    // ]);
-    //
-    // // You can choose to render your own GridView separately
-    // echo \kartik\grid\GridView::widget([
-    //     'dataProvider' => $dataProvider,
-    //     'filterModel' => $searchModel,
-    //     'columns' => $gridColumns,
-    //
-    // ]);
+
 
 
 $date = date('m/d/Y h:i:s a', time());
@@ -178,13 +149,14 @@ $date = date('m/d/Y h:i:s a', time());
 
 //=--------------------------------------------------------------------------------------------------------------------------
 
-use kartik\export\ExportMenu;
-use kartik\grid\GridView;
-// use kartik\helpers\Html;
+
 $fullExportMenu = ExportMenu::widget([
     'dataProvider' => $dataProvider,
-    'columns' => $exportColumns,
-    'filename' => "basic_ips ($date)",
+    'columns' => $gridColumns,
+     // 'batchSize'=>50,
+    'clearBuffers' => true,
+
+    'filename' => "ИП_($date)",
     'target' => ExportMenu::TARGET_POPUP,
     'pjaxContainerId' => 'kv-pjax-container',
     'exportContainer' => [
@@ -198,15 +170,19 @@ $fullExportMenu = ExportMenu::widget([
         ],
     ],
 ]);
+
+
+
 echo \kartik\grid\GridView::widget([
   'dataProvider' => $dataProvider,
       'filterModel' => $searchModel,
       'columns' => $gridColumns,
+
     'pjax' => true,
     'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container']],
     'panel' => [
         'type' => GridView::TYPE_PRIMARY,
-        'heading' => '<h1 class="panel-title"><i class="fas fa-book"></i> ИП </h3>',
+        'heading' => '<h1 class="panel-title"> Basic_ips </h3>',
     ],
     // set a label for default menu
     'export' => [
@@ -224,18 +200,7 @@ echo \kartik\grid\GridView::widget([
 ]);
 
 
-
-
-
-
-
-
-
-
-
-
-
-//
+//------------------------------------------------------------------------------------------------------
 
  ?>
     <?php Pjax::end(); ?>

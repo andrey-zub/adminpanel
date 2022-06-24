@@ -30,13 +30,10 @@ class BasicIpsSearch extends BasicIps
         return Model::scenarios();
     }
 
-
-
-
     public function search($params)
     {
       Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
-        $limit = 100;
+        $limit = 50;
 
         $query = BasicIps::find();
               $query->limit($limit);
@@ -65,18 +62,18 @@ class BasicIpsSearch extends BasicIps
 //----------------------------------------------------------------------
 
 
-  // $query->with([
-  //   'activityIps',
-  //   'activitiesLinkIps',
-  //   'connectionIps',
-  //   'customerIps',
-  //   'customerLinkIps',
-  //   'legalCases',
-  //   'legalCaseLinks',
-  //   'phoneIps',
-  //   'emailIps',
-  //   'siteIps',
-  // ]);
+  $query->with([
+    'activityIps',
+    'activitiesLinkIps',
+    'connectionIps',
+    'customerIps',
+    'customerLinkIps',
+    'legalCases',
+    'legalCaseLinks',
+    'phoneIps',
+    'emailIps',
+    'siteIps',
+  ]);
 
   // grid filtering conditions
   $query->andFilterWhere([
