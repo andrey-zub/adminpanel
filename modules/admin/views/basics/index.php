@@ -277,7 +277,7 @@ $this->title = 'Организации';
     $fullExportMenu = ExportMenu::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumns,
-          'batchSize'=>50,
+          // 'batchSize'=>50,
         'clearBuffers' => true,
 
         'filename' => "ОРГАНИЗАЦИИ_($date)",
