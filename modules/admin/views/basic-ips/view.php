@@ -6,16 +6,12 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\BasicIps */
 
-$this->title = "basic ips #$model->id";
+$this->title = "ИП #$model->id";
 $this->params['breadcrumbs'][] = array(
-    'label'=> 'Admin panel',
-    'url'=>Yii::$app->urlManager->createUrl(['admin/'])
-);
-$this->params['breadcrumbs'][] = array(
-    'label'=> 'Basic',
+    'label'=> 'Организации',
     'url'=>Yii::$app->urlManager->createUrl(['admin/basics'])
 );
-$this->params['breadcrumbs'][] = ['label' => 'Basic Ips', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'ИП', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -24,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
