@@ -271,13 +271,14 @@ $this->title = 'Организации';
     $date = date('m/d/Y h:i:s a', time());
 
 
+
     //=--------------------------------------------------------------------------------------------------------------------------
 
 
     $fullExportMenu = ExportMenu::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumns,
-          // 'batchSize'=>50,
+           'batchSize'=>1000,
         'clearBuffers' => true,
 
         'filename' => "ОРГАНИЗАЦИИ_($date)",

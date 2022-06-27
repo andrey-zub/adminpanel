@@ -32,9 +32,10 @@ class BasicsController extends AppAdminController
 
     public function actionIndex()
     {
+      Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         $searchModel = new BasicsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+      Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

@@ -33,7 +33,7 @@ class BasicIpsSearch extends BasicIps
     public function search($params)
     {
       Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
-        $limit = 50;
+        $limit = 1000;
 
         $query = BasicIps::find();
               $query->limit($limit);
