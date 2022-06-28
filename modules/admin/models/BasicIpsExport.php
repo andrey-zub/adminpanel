@@ -10,7 +10,7 @@ use Yii;
 /**
  * BasicIpsSearch represents the model behind the search form of `app\modules\admin\models\BasicIps`.
  */
-class BasicIpsSearch extends BasicIps
+class BasicIpsExport extends BasicIps
 {
     /**
      * {@inheritdoc}
@@ -62,18 +62,18 @@ class BasicIpsSearch extends BasicIps
 //----------------------------------------------------------------------
 
 
-  // $query->with([
-  //   'activityIps',
-  //   'activitiesLinkIps',
-  //   'connectionIps',
-  //   'customerIps',
-  //   'customerLinkIps',
-  //   'legalCases',
-  //   'legalCaseLinks',
-  //   'phoneIps',
-  //   'emailIps',
-  //   'siteIps',
-  // ]);
+  $query->with([
+    'activityIps',
+    'activitiesLinkIps',
+    'connectionIps',
+    'customerIps',
+    'customerLinkIps',
+    'legalCases',
+    'legalCaseLinks',
+    'phoneIps',
+    'emailIps',
+    'siteIps',
+  ]);
 
   // grid filtering conditions
   $query->andFilterWhere([

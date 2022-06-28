@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\BasicIps;
 use app\modules\admin\models\BasicIpsSearch;
+use app\modules\admin\models\BasicIpsExport;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,11 +39,15 @@ class BasicIpsController extends Controller
        Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         $searchModel = new BasicIpsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $exportModel = new BasicIpsExport();
+        $dataProviderExport = $exportModel->search(Yii::$app->request->queryParams);
         Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'dataProviderExport' => $dataProviderExport,
 
         ]);
     }

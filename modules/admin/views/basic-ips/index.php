@@ -27,17 +27,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php Pjax::begin(); ?>
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <?
 
+$gridColumns = [
 
-    $gridColumns = [
+    [
+        'class' => 'yii\grid\ActionColumn',
+        'template'=>'{view}'
+    ],
+    'id',
+    'name_ip:ntext',
+    'status',
+    'ogrn',
+    'inn',
+    'okpp',
+    'main_activity_num',
+      'full_name_ip:ntext',
+      'date_reg',
+      'ceil_reg',
       ['class' => 'yii\grid\SerialColumn'],
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'template'=>'{view}'
-        ],
+  ];
+
+    $exportColumns = [
+    
         'id',
         'name_ip:ntext',
         'status',
@@ -151,54 +165,46 @@ $date = date('m/d/Y h:i:s a', time());
 
 //=--------------------------------------------------------------------------------------------------------------------------
 
-
-$fullExportMenu = ExportMenu::widget([
-    'dataProvider' => $dataProvider,
-    'columns' => $gridColumns,
-     // 'batchSize'=>50,
-    'clearBuffers' => true,
-
-    'filename' => "ИП_($date)",
-    'target' => ExportMenu::TARGET_POPUP,
-    'pjaxContainerId' => 'kv-pjax-container',
-    'exportContainer' => [
-        'class' => 'btn-group mr-2 me-2'
-    ],
+echo ExportMenu::widget([
+    'dataProvider' => $dataProviderExport,
+    'columns' => $exportColumns,
+    'target' => '_popup',
+        'clearBuffers' => true,
+        'filename' => "ИП_($date)",
     'dropdownOptions' => [
-        'label' => 'Export (1-50)',
-        'class' => 'btn btn-outline-secondary btn-default',
-        'itemsBefore' => [
-            '<div class="dropdown-header">Export All Data</div>',
-        ],
-    ],
-]);
+               'label' => 'Export (1-100)',
+               'class' => 'btn btn-outline-secondary btn-default',
+               'itemsBefore' => [
+                   '<div class="dropdown-header">Export All Data</div>',
+               ],
+           ],
 
+]) . "\n".
+GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => $gridColumns,
+    'options' =>['style' => 'width: 2500px;'],
+    'layout' => "{summary}\n{pager}\n{items}\n{summary}\n{pager}",
 
-
-echo \kartik\grid\GridView::widget([
-  'dataProvider' => $dataProvider,
-      'filterModel' => $searchModel,
-      'columns' => $gridColumns,
-
-    'pjax' => true,
-    'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container']],
     'panel' => [
-        'type' => GridView::TYPE_PRIMARY,
-        'heading' => '<h1 class="panel-title"> Basic_ips </h3>',
-    ],
-    // set a label for default menu
-    'export' => [
-        'label' => 'Page',
-    ],
-    'exportContainer' => [
-        'class' => 'btn-group mr-2 me-2'
-    ],
-    // your toolbar can include the additional full export menu
-    'toolbar' => [
-        '{export}',
-        $fullExportMenu,
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<h1 class="panel-title"> Basics ips </h3>',
+        ],
 
-    ]
+        'export' => [
+               'label' => 'Page',
+           ],
+           'exportContainer' => [
+               'class' => 'btn-group mr-2 me-2'
+           ],
+           // your toolbar can include the additional full export menu
+           'toolbar' => [
+               '{export}',
+           ],
+    'rowOptions' => function ($model, $key, $index, $grid){
+      if(($model->id % 2) == 0) { return ['style' => 'background-color:#dce0e0;']; }
+    },
 ]);
 
 

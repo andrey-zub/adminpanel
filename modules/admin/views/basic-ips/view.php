@@ -32,6 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
+
+        'template' => function($attribute, $index, $widget){
+                if($attribute['value']){
+                    return "<tr><th>{$attribute['label']}</th><td>{$attribute['value']}</td></tr>";
+                }
+        },
+
         'attributes' => [
             'id',
             'created_at',

@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\Basics;
 use app\modules\admin\models\BasicsSearch;
+use app\modules\admin\models\BasicsExport;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,10 +36,15 @@ class BasicsController extends AppAdminController
       Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         $searchModel = new BasicsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $exportModel = new BasicsExport();
+        $dataProviderExport = $searchModel->search(Yii::$app->request->queryParams);
+
       Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'dataProviderExport' => $dataProviderExport,
         ]);
     }
 

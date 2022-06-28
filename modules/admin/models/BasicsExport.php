@@ -11,7 +11,7 @@ use Yii;
 /**
  * BasicsSearch represents the model behind the search form of `app\modules\admin\models\Basics`.
  */
-class BasicsSearch extends Basics
+class BasicsExport extends Basics
 {
     /**
      * {@inheritdoc}
@@ -72,35 +72,35 @@ class BasicsSearch extends Basics
         ]);
 
 
-        // $query->with([
-        //   'ratings',
-        //   'managements',
-        //   'phones',
-        //   'emails',
-        //   'sites',
-        //   'activities',
-        //   'activitiesLinks',
-        //   'trademarksLinks',
-        //   'connectionsLinks',
-        //   'predecessorsLinks',
-        //   'successorsLinks',
-        //   'branches',
-        //   'predecessors',
-        //   'successors',
-        //   'customers',
-        //   'customerLinks',
-        //   'sellers',
-        //   'sellerLinks',
-        //   'founderUrs',
-        //   'founderForeigns',
-        //   'financialIndicators',
-        //   'financialIndicatorLinks',
-        //   'financialStabilities',
-        //   'licenseLinks',
-        //   'connections',
-        //   'trademarks',
-        //   'enforcementProceedings'
-        // ]);
+        $query->with([
+          'ratings',
+          'managements',
+          'phones',
+          'emails',
+          'sites',
+          'activities',
+          'activitiesLinks',
+          'trademarksLinks',
+          'connectionsLinks',
+          'predecessorsLinks',
+          'successorsLinks',
+          'branches',
+          'predecessors',
+          'successors',
+          'customers',
+          'customerLinks',
+          'sellers',
+          'sellerLinks',
+          'founderUrs',
+          'founderForeigns',
+          'financialIndicators',
+          'financialIndicatorLinks',
+          'financialStabilities',
+          'licenseLinks',
+          'connections',
+          'trademarks',
+          'enforcementProceedings'
+        ]);
 
         $query->andFilterWhere(['like', 'org_name', $this->org_name])
             ->andFilterWhere(['like', 'status', $this->status])
