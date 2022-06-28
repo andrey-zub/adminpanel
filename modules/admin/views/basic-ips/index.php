@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php Pjax::begin(); ?>
-    <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <?
 
@@ -51,7 +51,7 @@ $gridColumns = [
   ];
 
     $exportColumns = [
-    
+
         'id',
         'name_ip:ntext',
         'status',
