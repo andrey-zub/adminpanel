@@ -117,8 +117,150 @@ class BasicIps extends \yii\db\ActiveRecord
     }
 
 
-  
+    public function getGridColumns(){
+      return [
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}'
+        ],
+        'id',
+        'name_ip:ntext',
+        'status',
+        'ogrn',
+        'inn',
+        'okpp',
+        'main_activity_num',
+          'full_name_ip:ntext',
+          'date_reg',
+          'ceil_reg',
+          ['class' => 'yii\grid\SerialColumn'],
+      ];
+    }
 
+  public function getExportColumns(){
+      return [
+        'id',
+        'name_ip:ntext',
+        'status',
+        'ogrn',
+        'inn',
+        'okpp',
+        'main_activity_num',
+          'full_name_ip:ntext',
+          'date_reg',
+          'ceil_reg',
+          [
+            'hidden' => true,
+             'label' => 'Activity ips',
+             'attribute'=>'activity_ips.text',
+             'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->activityIps, 'id', 'text')); },
+          ],
+          [
+            'hidden' => true,
+             'label' => 'Activity ips num',
+             'attribute'=>'activity_ips.num',
+             'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->activityIps, 'id', 'num')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Activity ips link',
+            'attribute'=>'activity_link_ips.text',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->activitiesLinkIps, 'id', 'link')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Connecton ips',
+            'attribute'=>'connecton_ips.text',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->connectionIps, 'id', 'text')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Customer ips fz',
+            'attribute'=>'customer_ips.fz',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->connectionIps, 'id', 'text')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Customer ips contract',
+            'attribute'=>'customer_ips.contract',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->connectionIps, 'id', 'contract')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Customer ips count',
+            'attribute'=>'customer_ips.count',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->connectionIps, 'id', 'count')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Customer ips link',
+            'attribute'=>'customer_link_ips.link',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->customerLinkIps, 'id', 'link')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Seller ips fz',
+            'attribute'=>'seller_ips.fz',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->sellerIps, 'id', 'fz')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Seller ips contract',
+            'attribute'=>'seller_ips.contract',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->sellerIps, 'id', 'contract')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Seller ips count',
+            'attribute'=>'seller_ips.count',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->sellerIps, 'id', 'count')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Seller ips link',
+            'attribute'=>'seller_link_ips.link',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->sellerLinkIps, 'id', 'link')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Legal case title ',
+            'attribute'=>'legal_cases.title',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->legalCases, 'id', 'title')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Legal case count ',
+            'attribute'=>'legal_cases.count',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->legalCases, 'id', 'count')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Legal case link ',
+            'attribute'=>'legal_case_links.link',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', 'link')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Phone ips ',
+            'attribute'=>'phone_ips.number',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->phoneIps, 'id', 'number')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Email ips ',
+            'attribute'=>'email_ips.addr',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->emailIps, 'id', 'addr')); },
+          ],
+          [
+            'hidden' => true,
+            'label'=>'Site ips',
+            'attribute'=>'site_ips.addr',
+            'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->siteIps, 'id', 'addr')); },
+          ],
+
+            ['class' => 'yii\grid\SerialColumn'],
+      ];
+      }
 
 
 

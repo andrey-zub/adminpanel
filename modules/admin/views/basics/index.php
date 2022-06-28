@@ -25,108 +25,6 @@ $this->title = 'Организации';
     Pjax::begin();
 
 
-
-    $gridColumns = [
-
-        [
-            'class' => 'yii\grid\ActionColumn',
-            'template'=>'{view}'
-        ],
-      'id',
-      'org_name',
-      'status',
-      'ogrn',
-      'inn',
-      'kpp',
-      'okpp',
-      'main_activity_num',
-      'date_reg',
-       'name_eng',
-       'ur_addr',
-       'org_prav_form',
-      'ust_cap',
-       'spec_nlg_rej',
-       'avg_workers',
-       'ceil_reg',
-       'main_activity_text',
-       ['class' => 'yii\grid\SerialColumn'],
-    ];
-
-    $exportColumns = [
-
-
-      'id',
-      'org_name',
-      'status',
-      'ogrn',
-      'inn',
-      'kpp',
-      'okpp',
-      'main_activity_num',
-      'date_reg',
-       'name_eng',
-       'ur_addr',
-       'org_prav_form',
-      'ust_cap',
-       'spec_nlg_rej',
-       'avg_workers',
-       'ceil_reg',
-       'main_activity_text',
-
-
-          [
-            'label'=>'Gen Dir',
-            'attribute'=>'managements.gen_dir',
-            'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'gen_dir'));},
-          ],
-          [
-            'label'=>'Gen Dir Inn',
-            'attribute'=>'managements.inn_gen_dir',
-            'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'inn_gen_dir'));},
-          ],
-          [
-            'label'=>'Gen Dir Date',
-            'attribute'=>'managements.date_gen_dir',
-            'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir'));},
-          ],
-          [
-            'label'=>'Phone',
-            'attribute'=>'phones.number',
-            'value' => function($model) { return join(',   ',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'));},
-          ],
-          [
-            'label'=>'Email',
-            'attribute'=>'emails.addr',
-            'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr'));},
-          ],
-          [
-            'label'=>'Site ',
-            'attribute'=>'sites.addr',
-            'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr'));},
-          ],
-          [
-            'label'=>'Activity num',
-            'attribute'=>'activities.num',
-            'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num'));},
-          ],
-          [
-            'label'=>'Activity',
-            'attribute'=>'activities.text',
-            'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text'));},
-          ],
-          [
-            'label'=>'Activity link',
-            'attribute'=>'activities_links.link',
-            'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link'));},
-          ],
-
-
-
-    ];
-
-
-
-
     $date = date('m/d/Y h:i:s a', time());
 
 
@@ -135,8 +33,8 @@ $this->title = 'Организации';
 
 
     echo ExportMenu::widget([
-        'dataProvider' => $dataProviderExport,
-        'columns' => $exportColumns,
+        'dataProvider' => $dataProvider,
+        'columns' =>  $searchModel->getExportColumns(),
         'target' => '_popup',
             'clearBuffers' => true,
             'filename' => "ОРГАНИЗАЦИИ_($date)",
@@ -152,8 +50,8 @@ $this->title = 'Организации';
     GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => $gridColumns,
-        'options' =>['style' => 'width: 2500px;'],
+        'columns' => $searchModel->getGridColumns(),
+        'options' =>['style' => 'width: 1800px;'],
         'layout' => "{summary}\n{pager}\n{items}\n{summary}\n{pager}",
 
         'panel' => [
@@ -163,6 +61,7 @@ $this->title = 'Организации';
 
             'export' => [
                    'label' => 'Page',
+
                ],
                'exportContainer' => [
                    'class' => 'btn-group mr-2 me-2'

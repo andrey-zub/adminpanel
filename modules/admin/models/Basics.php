@@ -4,27 +4,7 @@ namespace app\modules\admin\models;
 
 use Yii;
 
-/**
- * This is the model class for table "basics".
- *
- * @property int $id
- * @property string|null $org_name
- * @property string|null $status
- * @property string|null $ogrn
- * @property string|null $inn
- * @property string|null $kpp
- * @property string|null $okpp
- * @property string|null $date_reg
- * @property string|null $name_eng
- * @property string|null $ur_addr
- * @property string|null $org_prav_form
- * @property string|null $ust_cap
- * @property string|null $spec_nlg_rej
- * @property string|null $avg_workers
- * @property string|null $ceil_reg
- * @property string|null $main_activity_num
- * @property string|null $main_activity_text
- */
+
 class Basics extends \yii\db\ActiveRecord
 {
 
@@ -209,7 +189,111 @@ public function getEnforcementProceedings()
 
 
 
+public function getGridColumns(){
+  return [
+    [
+        'class' => 'yii\grid\ActionColumn',
+        'template'=>'{view}'
+    ],
+  'id',
+  'org_name',
+  'status',
+  'ogrn',
+  'inn',
+  'kpp',
+  'okpp',
+  'main_activity_num',
+  'date_reg',
+   'name_eng',
+   'ur_addr',
+   'org_prav_form',
+  'ust_cap',
+   'spec_nlg_rej',
+   'avg_workers',
+   'ceil_reg',
+   'main_activity_text',
+   ['class' => 'yii\grid\SerialColumn'],
+  ];
+}
 
+public function getExportColumns(){
+  return [
+    'id',
+    'org_name',
+    'status',
+    'ogrn',
+    'inn',
+    'kpp',
+    'okpp',
+    'main_activity_num',
+    'date_reg',
+     'name_eng',
+     'ur_addr',
+     'org_prav_form',
+    'ust_cap',
+     'spec_nlg_rej',
+     'avg_workers',
+     'ceil_reg',
+     'main_activity_text',
+
+
+        [
+          'hidden' => true,
+          'label'=>'Gen Dir',
+          'attribute'=>'managements.gen_dir',
+          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'gen_dir'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Gen Dir Inn',
+          'attribute'=>'managements.inn_gen_dir',
+          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'inn_gen_dir'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Gen Dir Date',
+          'attribute'=>'managements.date_gen_dir',
+          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Phone',
+          'attribute'=>'phones.number',
+          'value' => function($model) { return join(',   ',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Email',
+          'attribute'=>'emails.addr',
+          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Site ',
+          'attribute'=>'sites.addr',
+          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Activity num',
+          'attribute'=>'activities.num',
+          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Activity',
+          'attribute'=>'activities.text',
+          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text'));},
+        ],
+        [
+          'hidden' => true,
+          'label'=>'Activity link',
+          'attribute'=>'activities_links.link',
+          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link'));},
+        ],
+
+  ];
+  }
 
 
 
