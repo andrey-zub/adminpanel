@@ -37,14 +37,17 @@ class BasicsSearch extends Basics
 
         $limit = 100;
 
-        $query = Basics::find();
+              // $params = [
+              //     'match' => [
+              //         'org_name' => $this->org_name
+              //       ]
+              //     ];
 
 
+        $query = Basics::find();//->query($params);
               $query->limit($limit);
 
-
         // add conditions that should always apply here
-
 
                 $dataProvider = new ActiveDataProvider([
                     'query' => $query,
@@ -67,10 +70,24 @@ class BasicsSearch extends Basics
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
+        $query->andFilterWhere(['id' => $this->id,]);
 
+        $query->andFilterWhere(['like', 'org_name', $this->org_name])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'ogrn', $this->ogrn])
+            ->andFilterWhere(['like', 'inn', $this->inn])
+            ->andFilterWhere(['like', 'kpp', $this->kpp])
+            ->andFilterWhere(['like', 'okpp', $this->okpp])
+            ->andFilterWhere(['like', 'date_reg', $this->date_reg])
+            ->andFilterWhere(['like', 'name_eng', $this->name_eng])
+            ->andFilterWhere(['like', 'ur_addr', $this->ur_addr])
+            ->andFilterWhere(['like', 'org_prav_form', $this->org_prav_form])
+            ->andFilterWhere(['like', 'ust_cap', $this->ust_cap])
+            ->andFilterWhere(['like', 'spec_nlg_rej', $this->spec_nlg_rej])
+            ->andFilterWhere(['like', 'avg_workers', $this->avg_workers])
+            ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
+            ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
+            ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
 
         // $query->with([
         //   'ratings',
@@ -102,22 +119,7 @@ class BasicsSearch extends Basics
         //   'enforcementProceedings'
         // ]);
 
-        $query->andFilterWhere(['like', 'org_name', $this->org_name])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'ogrn', $this->ogrn])
-            ->andFilterWhere(['like', 'inn', $this->inn])
-            ->andFilterWhere(['like', 'kpp', $this->kpp])
-            ->andFilterWhere(['like', 'okpp', $this->okpp])
-            ->andFilterWhere(['like', 'date_reg', $this->date_reg])
-            ->andFilterWhere(['like', 'name_eng', $this->name_eng])
-            ->andFilterWhere(['like', 'ur_addr', $this->ur_addr])
-            ->andFilterWhere(['like', 'org_prav_form', $this->org_prav_form])
-            ->andFilterWhere(['like', 'ust_cap', $this->ust_cap])
-            ->andFilterWhere(['like', 'spec_nlg_rej', $this->spec_nlg_rej])
-            ->andFilterWhere(['like', 'avg_workers', $this->avg_workers])
-            ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
-            ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-            ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+
 
 
 

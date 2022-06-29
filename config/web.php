@@ -97,6 +97,20 @@ $config = [
         'dateFormat' => 'yyyy-MM-dd',
     ],
 
+
+
+    'elasticsearch' => [
+        'class' => 'yii\elasticsearch\Connection',
+        'nodes' => [
+            ['http_address' => '46.229.215.224:1302'],
+            // configure more hosts if you have a cluster
+        ],
+        'dslVersion' => 7, // default is 5
+    ],
+
+
+
+
     ],
     'params' => $params,
 ];

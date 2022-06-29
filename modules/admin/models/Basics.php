@@ -1,11 +1,12 @@
 <?php
 
 namespace app\modules\admin\models;
-
+// use yii\elasticsearch\ActiveRecord;
+ use \yii\db\ActiveRecord;
 use Yii;
 
 
-class Basics extends \yii\db\ActiveRecord
+class Basics extends ActiveRecord
 {
 
     public static function tableName()
@@ -14,10 +15,38 @@ class Basics extends \yii\db\ActiveRecord
     }
 
 
+//------------------------------------------elasticSearch
+    public static function index()
+    {
+        return '';
+    }
+    public static function type()
+    {
+        return '';
+    }
+
+
+    /**
+     Атрибуты. Важно указать. Иначе, данные не сохранятся.
+    */
+    // public function attributes()
+    // {
+    //     return [
+    //         // "first_name",
+    //         // "last_name",
+    //         // "age" ,
+    //         // "about" ,
+    //         // "interests"
+    //       ];
+    //   }
+
+
     public function rules()
     {
         return [
             [['org_name', 'status', 'ogrn', 'inn', 'kpp', 'okpp', 'date_reg', 'name_eng', 'ur_addr', 'org_prav_form', 'ust_cap', 'spec_nlg_rej', 'avg_workers', 'ceil_reg', 'main_activity_num', 'main_activity_text'], 'string', 'max' => 255],
+
+            [$this->attributes(), 'safe']
         ];
     }
 
@@ -241,55 +270,55 @@ public function getExportColumns(){
           'hidden' => true,
           'label'=>'Gen Dir',
           'attribute'=>'managements.gen_dir',
-          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'gen_dir'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'gen_dir'));},
         ],
         [
           'hidden' => true,
           'label'=>'Gen Dir Inn',
           'attribute'=>'managements.inn_gen_dir',
-          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'inn_gen_dir'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'inn_gen_dir'));},
         ],
         [
           'hidden' => true,
           'label'=>'Gen Dir Date',
           'attribute'=>'managements.date_gen_dir',
-          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir'));},
         ],
         [
           'hidden' => true,
           'label'=>'Phone',
           'attribute'=>'phones.number',
-          'value' => function($model) { return join(',   ',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'));},
         ],
         [
           'hidden' => true,
           'label'=>'Email',
           'attribute'=>'emails.addr',
-          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr'));},
         ],
         [
           'hidden' => true,
           'label'=>'Site ',
           'attribute'=>'sites.addr',
-          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr'));},
         ],
         [
           'hidden' => true,
           'label'=>'Activity num',
           'attribute'=>'activities.num',
-          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num'));},
         ],
         [
           'hidden' => true,
           'label'=>'Activity',
           'attribute'=>'activities.text',
-          'value' => function($model) { return join('.   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text'));},
+          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text'));},
         ],
         [
           'hidden' => true,
           'label'=>'Activity link',
           'attribute'=>'activities_links.link',
-          'value' => function($model) { return join(';   ',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link'));},
+          'value' => function($model) { return join(',  <br> ',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link'));},
         ],
 
   ];
