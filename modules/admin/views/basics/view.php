@@ -31,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+
+
+     DetailView::widget([
         'model' => $model,
 
         'template' => function($attribute, $index, $widget){
@@ -88,27 +91,46 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute'=>'emails.addr',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr')),
             ],
-            [
-              'label'=>'Activity num',
-              'attribute'=>'activities.num',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num')),
-            ],
-            [
-              'label'=>'Activity',
-              'attribute'=>'activities.text',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text')),
-            ],
+            //--------------------------------------------------------------------------------------------------------------------
+            // [
+            //   'label'=>'Activity num',
+            //   'attribute'=>'activities.num',
+            //   'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num')),
+            // ],
+            // [
+            //   'label'=>'Activity',
+            //   'attribute'=>'activities.text',
+            //   'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text')),
+            // ],
+
 
             [
-              'label'=>'Site ',
-              'attribute'=>'sites.addr',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr')),
+              'label'=>'Activities',
+              'value' => implode(',</br>', \yii\helpers\ArrayHelper::map($model->activities, 'id',
+                function ($activList) { return '<br>'.$activList->num.'  /  '.$activList->text;}
+              )),
             ],
+
+
 
             [
               'label'=>'Activity link',
               'attribute'=>'activities_links.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link')),
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', function($activLink){
+                  return '<a href='.$activLink->link.' target="_blank">'.$activLink->link.'</a>';
+              })),
+            ],
+
+
+
+
+
+
+            //--------------------------------------------------------------------------------------------------------------------
+            [
+              'label'=>'Site ',
+              'attribute'=>'sites.addr',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr')),
             ],
 
             [

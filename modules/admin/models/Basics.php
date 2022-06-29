@@ -1,8 +1,8 @@
 <?php
 
 namespace app\modules\admin\models;
-// use yii\elasticsearch\ActiveRecord;
- use \yii\db\ActiveRecord;
+//use yii\elasticsearch\ActiveRecord;
+use \yii\db\ActiveRecord;
 use Yii;
 
 
@@ -16,27 +16,36 @@ class Basics extends ActiveRecord
 
 
 //------------------------------------------elasticSearch
-    public static function index()
-    {
-        return '';
-    }
-    public static function type()
-    {
-        return '';
-    }
-
-
-    /**
-     Атрибуты. Важно указать. Иначе, данные не сохранятся.
-    */
+    // public static function index()
+    // {
+    //     return 'org_name';
+    // }
+    //
+    //
+    //
+    // /**
+    //  Атрибуты. Важно указать. Иначе, данные не сохранятся.
+    // */
     // public function attributes()
     // {
     //     return [
-    //         // "first_name",
-    //         // "last_name",
-    //         // "age" ,
-    //         // "about" ,
-    //         // "interests"
+    //       'id',
+    //       'org_name',
+    //       'status',
+    //       'ogrn',
+    //       'inn',
+    //       'kpp',
+    //       'okpp',
+    //       'main_activity_num',
+    //       'date_reg',
+    //        'name_eng',
+    //        'ur_addr',
+    //        'org_prav_form',
+    //       'ust_cap',
+    //        'spec_nlg_rej',
+    //        'avg_workers',
+    //        'ceil_reg',
+    //        'main_activity_text',
     //       ];
     //   }
 
@@ -46,7 +55,7 @@ class Basics extends ActiveRecord
         return [
             [['org_name', 'status', 'ogrn', 'inn', 'kpp', 'okpp', 'date_reg', 'name_eng', 'ur_addr', 'org_prav_form', 'ust_cap', 'spec_nlg_rej', 'avg_workers', 'ceil_reg', 'main_activity_num', 'main_activity_text'], 'string', 'max' => 255],
 
-            [$this->attributes(), 'safe']
+            //[$this->attributes(), 'safe']
         ];
     }
 
