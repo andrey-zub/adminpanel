@@ -28,13 +28,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'inn') ?>
 
-    <?php // echo $form->field($model, 'kpp') ?>
+    <?php  echo $form->field($model, 'kpp') ?>
 
-    <?php // echo $form->field($model, 'okpp') ?>
+    <?php  echo $form->field($model, 'okpp') ?>
 
     <?php // echo $form->field($model, 'date_reg') ?>
 
-    <?php // echo $form->field($model, 'name_eng') ?>
+    <?php  echo $form->field($model, 'name_eng') ?>
 
     <?php // echo $form->field($model, 'ur_addr') ?>
 
@@ -48,13 +48,13 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'ceil_reg') ?>
 
-    <?php // echo $form->field($model, 'main_activity_num') ?>
+    <?php  echo $form->field($model, 'main_activity_num') ?>
 
     <?php // echo $form->field($model, 'main_activity_text') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Очистить', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

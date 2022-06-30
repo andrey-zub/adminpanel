@@ -64,22 +64,22 @@ class Basics extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'org_name' => 'Org Name',
-            'status' => 'Status',
-            'ogrn' => 'Ogrn',
-            'inn' => 'Inn',
-            'kpp' => 'Kpp',
-            'okpp' => 'Okpp',
-            'date_reg' => 'Date Reg',
-            'name_eng' => 'Name Eng',
-            'ur_addr' => 'Ur Addr',
-            'org_prav_form' => 'Org Prav Form',
-            'ust_cap' => 'Ust Cap',
-            'spec_nlg_rej' => 'Spec Nlg Rej',
-            'avg_workers' => 'Avg Workers',
-            'ceil_reg' => 'Ceil Reg',
-            'main_activity_num' => 'Main Activity Num',
-            'main_activity_text' => 'Main Activity Text',
+            'org_name' => 'Наименование',
+            'status' => 'Статус',
+            'ogrn' => 'ОГРН',
+            'inn' => 'ИНН',
+            'kpp' => 'КПП',
+            'okpp' => 'ОКПП',
+            'date_reg' => 'Дата регистрации',
+            'name_eng' => 'Наименование на английском',
+            'ur_addr' => 'Юридический адрес',
+            'org_prav_form' => 'Организационно правовая форма',
+            'ust_cap' => 'Уставной капитал',
+            'spec_nlg_rej' => 'Специальный налоговый режим',
+            'avg_workers' => 'Количество работников',
+            'ceil_reg' => 'Единый реестр субъектов малого и среднего предпринимательства',
+            'main_activity_num' => 'Номер ОКВЭД',
+            'main_activity_text' => 'Наименование ОКВЭД',
         ];
     }
 
@@ -213,6 +213,11 @@ public function getFinancialStabilities()
     return $this->hasMany(FinancialStabilities::className(), ['basic_id' => 'id']);
 }
 
+public function getLicenses()
+{
+    return $this->hasMany(Licenses::className(), ['basic_id' => 'id']);
+}
+
 public function getLicenseLinks()
 {
     return $this->hasMany(LicenseLinks::className(), ['basic_id' => 'id']);
@@ -240,7 +245,6 @@ public function getGridColumns(){
   'inn',
   'kpp',
   'okpp',
-  'main_activity_num',
   'date_reg',
    'name_eng',
    'ur_addr',
@@ -249,6 +253,7 @@ public function getGridColumns(){
    'spec_nlg_rej',
    'avg_workers',
    'ceil_reg',
+   'main_activity_num',
    'main_activity_text',
    ['class' => 'yii\grid\SerialColumn'],
   ];
@@ -263,7 +268,6 @@ public function getExportColumns(){
     'inn',
     'kpp',
     'okpp',
-    'main_activity_num',
     'date_reg',
      'name_eng',
      'ur_addr',
@@ -272,63 +276,130 @@ public function getExportColumns(){
      'spec_nlg_rej',
      'avg_workers',
      'ceil_reg',
+     'main_activity_num',
      'main_activity_text',
 
 
         [
-          'hidden' => true,
-          'label'=>'Gen Dir',
+            'label'=>'Гениральный директор ( ФИО )',
+          'hAlign'=>'center',
+          'format'=>'text',
+            'width'=>'100px',
           'attribute'=>'managements.gen_dir',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'gen_dir'));},
+            'value' => function($model) { return join(',    ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'gen_dir'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Gen Dir Inn',
+          'label'=>'Гениральный директор ( ИНН )',
+          'hAlign'=>'center',
+          'format'=>'text',
+            'width'=>'100px',
           'attribute'=>'managements.inn_gen_dir',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'inn_gen_dir'));},
+            'value' => function($model) { return join(',    ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'inn_gen_dir'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Gen Dir Date',
+          'label'=>'Гениральный директор ( Назначен )',
+          'hAlign'=>'center',
+          'format'=>'text',
+          'width'=>'100px',
           'attribute'=>'managements.date_gen_dir',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir'));},
+            'value' => function($model) { return join(',    ',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Phone',
+          'label'=>'Контактная информация ( телефон )',
+          'hAlign'=>'center',
+          'format'=>'text',
+          'width'=>'100px',
           'attribute'=>'phones.number',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'));},
+            'value' => function($model) { return join(',    ',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Email',
+          'label'=>'Контактная информация ( элетронная почта )',
+          'hAlign'=>'center',
+          'format'=>'text',
+          'width'=>'100px',
           'attribute'=>'emails.addr',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr'));},
+            'value' => function($model) { return join(',   ',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Site ',
+          'label'=>'Контактная информация ( сайт )',
+          'hAlign'=>'center',
+          'format'=>'text',
+          'width'=>'100px',
           'attribute'=>'sites.addr',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr'));},
+            'value' => function($model) { return join(',    ',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Activity num',
+          'label'=>'Вид деятельности ( номер )',
+          'hAlign'=>'center',
+          'format'=>'text',
+          'width'=>'100px',
           'attribute'=>'activities.num',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num'));},
+            'value' => function($model) { return join(',   ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Activity',
+          'label'=>'Вид деятельности ( наименование )',
+          'format'=>'text',
+          'width'=>'100px',
           'attribute'=>'activities.text',
-          'value' => function($model) { return join(',  <br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text'));},
+            'value' => function($model) { return join(',    ',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text'));},
         ],
         [
-          'hidden' => true,
-          'label'=>'Activity link',
+          'label'=>'Вид деятельности ( подробнее )',
+          'hAlign'=>'center',
+          'format'=>'text',
+          'width'=>'100px',
           'attribute'=>'activities_links.link',
-          'value' => function($model) { return join(',  <br> ',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link'));},
+            'value' => function($model) { return join(',     ',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', 'link'));},
         ],
+
+        [
+          'label'=>'Юр. лицо ( учредитель )',
+          'format'=>'text',
+          'width'=>'100px',
+          'attribute'=>'founder_urs.founder',
+          'value' => function($model) { return join(',     ',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'founder'));},
+        ],
+        [
+          'label'=>'Юр. лицо ( стоимость доли )',
+          'format'=>'text',
+          'hAlign'=>'center',
+          'width'=>'100px',
+          'attribute'=>'founder_urs.cost',
+          'value' => function($model) { return join(',     ',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'cost'));},
+        ],
+        [
+          'label'=>'Юр. лицо ( доля капитала )',
+          'format'=>'text',
+          'hAlign'=>'center',
+          'width'=>'100px',
+          'attribute'=>'founder_urs.capital',
+          'value' => function($model) { return join(',     ',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'capital'));},
+        ],
+
+        [
+          'label'=>'Иностранное юр. лицо ( учредитель )',
+          'format'=>'text',
+          'width'=>'100px',
+          'attribute'=>'founder_foreigns.founder',
+          'value' => function($model) { return join(',     ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'founder'));},
+        ],
+        [
+          'label'=>'Иностранное юр. лицо ( стоимость доли )',
+          'format'=>'text',
+          'hAlign'=>'center',
+          'width'=>'100px',
+          'attribute'=>'founder_foreigns.cost',
+          'value' => function($model) { return join(',     ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'cost'));},
+        ],
+        [
+          'label'=>'Иностранное юр. лицо ( доля капитала )',
+          'format'=>'text',
+          'hAlign'=>'center',
+          'width'=>'100px',
+          'attribute'=>'founder_foreigns.capital',
+          'value' => function($model) { return join(',     ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'capital'));},
+        ],
+
 
   ];
   }

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Basics */
 
-$this->title = "Организация #$model->id";
+$this->title = "$model->org_name ";
 
 $this->params['breadcrumbs'][] = array(
     'label'=> 'ИП',
@@ -61,240 +61,239 @@ $this->params['breadcrumbs'][] = $this->title;
             'main_activity_num',
             'main_activity_text',
             //------------------------------------связанные поля--------------------------------
+
             [
-              'attribute'=>'ratings.mark',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->ratings, 'id', 'mark')),
+              'label'=>'Рейтинг',
+              'value' => implode(',</br>', \yii\helpers\ArrayHelper::map($model->ratings, 'id',
+                function ($rait) { return '<br><b>'.$rait->mark.'</b>  /  '.$rait->comment;}
+              )),
             ],
+
             [
-              'attribute'=>'ratings.comment',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->ratings, 'id', 'comment')),
-            ],
-            [
+                'label'=>'Гениральный директор ( ФИО )',
               'attribute'=>'managements.gen_dir',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'gen_dir')),
             ],
             [
+              'label'=>'Гениральный директор ( ИНН )',
               'attribute'=>'managements.inn_gen_dir',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'inn_gen_dir')),
             ],
             [
+              'label'=>'Гениральный директор ( Назначен )',
               'attribute'=>'managements.date_gen_dir',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->managements, 'id', 'date_gen_dir')),
             ],
+            //-------------------------------------------------------------------------------------------------------------
+
             [
-              'label'=>'Phone',
+              'label'=>'Контактная информация ( телефон )',
               'attribute'=>'phones.number',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->phones, 'id', 'number')),
             ],
             [
-              'label'=>'Email',
+              'label'=>'Контактная информация ( электронная почта )',
               'attribute'=>'emails.addr',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->emails, 'id', 'addr')),
             ],
+            [
+              'label'=>'Контактная информация ( сайт )',
+              'attribute'=>'sites.addr',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr')),
+            ],
             //--------------------------------------------------------------------------------------------------------------------
-            // [
-            //   'label'=>'Activity num',
-            //   'attribute'=>'activities.num',
-            //   'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'num')),
-            // ],
-            // [
-            //   'label'=>'Activity',
-            //   'attribute'=>'activities.text',
-            //   'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activities, 'id', 'text')),
-            // ],
-
 
             [
-              'label'=>'Activities',
+              'label'=>'Виды деятельности',
               'value' => implode(',</br>', \yii\helpers\ArrayHelper::map($model->activities, 'id',
-                function ($activList) { return '<br>'.$activList->num.'  /  '.$activList->text;}
+                function ($activList) { return '<br><b>'.$activList->num.'</b>  /  '.$activList->text;}
               )),
             ],
 
 
 
             [
-              'label'=>'Activity link',
+              'label'=>'Виды деятельности ( подробнее )',
               'attribute'=>'activities_links.link',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activitiesLinks, 'id', function($activLink){
                   return '<a href='.$activLink->link.' target="_blank">'.$activLink->link.'</a>';
               })),
             ],
 
-
-
-
-
-
             //--------------------------------------------------------------------------------------------------------------------
+
             [
-              'label'=>'Site ',
-              'attribute'=>'sites.addr',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sites, 'id', 'addr')),
+              'label'=>'Товарные знаки',
+              'value' => implode(',</br>', \yii\helpers\ArrayHelper::map($model->trademarks, 'id',
+                function ($trad) { return '<br><b>'.$trad->text.'</b>  /  '.$trad->link;}
+              )),
+            ],
+            [
+              'label'=>'Товарные знаки ( подробнее )',
+              'attribute'=>'trademarks_links.link',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->trademarksLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
+            ],
+            //------------------------------------------------------------------------------
+
+            [
+              'label'=>'Связи',
+              'value' => implode(',</br>', \yii\helpers\ArrayHelper::map($model->connections, 'id',
+                function ($conn) { return '<br><b>'.$conn->title.'</b>  /  '.$conn->text;}
+              )),
             ],
 
             [
-              'label'=>'Trademark text',
-              'attribute'=>'trademarks.text',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->trademarks, 'id', 'text')),
-            ],
-            [
-              'label'=>'Trademark link',
-              'attribute'=>'trademarks.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->trademarks, 'id', 'link')),
-            ],
-            [
-              'label'=>'Trademark_links link',
-              'attribute'=>'trademarks_links.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->trademarksLinks, 'id', 'link')),
-            ],
-            [
-              'label'=>'Connections title',
-              'attribute'=>'connections.title',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->connections, 'id', 'title')),
-            ],
-            [
-              'label'=>'Connections text',
-              'attribute'=>'connections.text',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->connections, 'id', 'text')),
-            ],
-            [
-              'label'=>'Connections link',
+              'label'=>'Связи ( подробнее )',
               'attribute'=>'connections_links.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->connectionsLinks, 'id', 'link')),
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->connectionsLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
+
+          //-----------------------------------------------------------------------------
             [
-              'label'=>'Predecessors',
+              'label'=>'Правопредшественники',
               'attribute'=>'predecessors.text',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->predecessors, 'id', 'text')),
             ],
             [
-              'label'=>'Predecessors link',
+              'label'=>'Правопредшественники ( подробнее )',
               'attribute'=>'predecessors_links.link',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->predecessorsLinks, 'id', 'link')),
             ],
             [
-              'label'=>'Successors',
+              'label'=>'Правопреемники',
               'attribute'=>'successors.text',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->successors, 'id', 'text')),
             ],
             [
-              'label'=>'Successors link',
+              'label'=>'Правопреемники ( подробнее )',
               'attribute'=>'successors_links.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->successorsLinks, 'id', 'link')),
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->successorsLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
+            //---------------------------------------------------------------------------------------------------
+
             [
-              'label'=>'Customer fz',
-              'attribute'=>'customers.fz',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->customers, 'id', 'fz')),
+              'label'=>'Заказчики',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->sellers, 'id',
+                function ($cus) { return
+                   '  <br> <b>ФЗ</b>    /       <b>Контракты  </b>    /     <b>Общая сумма</b> </br>
+                   <br>'.$cus->fz.'  /  '.$cus->contract.'  /  '.$cus->count.'</br>'
+
+                ;}
+              )),
             ],
+
             [
-              'label'=>'Customer contract',
-              'attribute'=>'customers.contract',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->customers, 'id', 'contract')),
-            ],
-            [
-              'label'=>'Customer count',
-              'attribute'=>'customers.count',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->customers, 'id', 'count')),
-            ],
-            [
-              'label'=>'Customer link',
+              'label'=>'Заказчики ( подробнее )',
               'attribute'=>'customer_links.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->customerLinks, 'id', 'link')),
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->customerLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
+
+            //-----------------------------------------------------------------------------------------------------
             [
-              'label'=>'Branches',
+              'label'=>'Фелиалы',
               'attribute'=>'branches.text',
               'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->branches, 'id', 'text')),
             ],
+
+
+            //-----------------------------------------------------------------------------------------------------
             [
-              'label'=>'Sellers fz',
-              'attribute'=>'sellers.fz',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sellers, 'id', 'fz')),
+              'label'=>'Поставщики',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->sellers, 'id',
+                function ($sel) { return
+                   '  <br> <b>ФЗ</b>    /       <b>Контракты  </b>    /     <b>Общая сумма</b> </br>
+                   <br>'.$sel->fz.'  /  '.$sel->contract.'  /  '.$sel->count.'</br>'
+
+                ;}
+              )),
             ],
+
             [
-              'label'=>'Seller contract',
-              'attribute'=>'sellers.contract',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sellers, 'id', 'contract')),
-            ],
-            [
-              'label'=>'Seller count',
-              'attribute'=>'sellers.count',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sellers, 'id', 'count')),
-            ],
-            [
-              'label'=>'Seller link',
+              'label'=>'Поставщики ( подробнее )',
               'attribute'=>'seller_links.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sellerLinks, 'id', 'link')),
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sellerLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------
             [
-              'label'=>'Founder Urs founder',
-              'attribute'=>'founder_urs.founder',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'founder')),
+              'label'=>'Учредители - Юр. лица',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->founderUrs, 'id',
+                function ($urs) { return
+                   '  <br> <b>Учредитель</b>    /       <b>Стоимость доли  </b>    /     <b>Доля капитала</b> </br>
+                   <br>'.$urs->founder.'  /  '.$urs->cost.'  /  '.$urs->capital.'</br>'
+
+                ;}
+              )),
             ],
+
+
+            //----------------------------------------------------------------------------------------------------------------------
             [
-              'label'=>'Founder Urs cost',
-              'attribute'=>'founder_urs.cost',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'cost')),
+              'label'=>'Учредители - Иностранные юр. лица',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->founderForeigns, 'id',
+                function ($for) { return
+                   '  <br> <b>Учредитель</b>    /       <b>Стоимость доли  </b>    /     <b>Доля капитала</b> </br>
+                   <br>'.$for->founder.'  /  '.$for->cost.'  /  '.$for->capital.'</br>'
+
+                ;}
+              )),
             ],
+
+            //-------------------------------------------------------------------------------------------------------------------------
             [
-              'label'=>'Founder Urs capital',
-              'attribute'=>'founder_urs.capital',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->founderUrs, 'id', 'capital')),
-            ],
-            [
-              'label'=>'Founder foreigns founder',
-              'attribute'=>'founder_foreigns.founder',
-              'value' => implode(' ,<br>',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'founder')),
-            ],
-            [
-              'label'=>'Founder foreigns cost',
-              'attribute'=>'founder_foreigns.cost',
-              'value' => implode(' ,<br> ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'cost')),
-            ],
-            [
-              'label'=>'Founder foreigns capital',
-              'attribute'=>'founder_foreigns.capital',
-              'value' => implode(' ,<br> ',\yii\helpers\ArrayHelper::map($model->founderForeigns, 'id', 'capital')),
-            ],
-            [
-              'label'=>'Financial indicator ',
+              'label'=>'Финансовые показатели ',
               'attribute'=>'financial_indicator.text',
               'value' => implode(',<br> ',\yii\helpers\ArrayHelper::map($model->financialIndicators, 'id', 'text')),
             ],
             [
-              'label'=>'Financial indicator link',
+              'label'=>'Финансовые показатели ( подробнее )',
               'attribute'=>'financial_indicator_links.link',
-              'value' => implode(',<br>  ',\yii\helpers\ArrayHelper::map($model->financialIndicatorLinks, 'id', 'link')),
+              'value' => implode(',<br>  ',\yii\helpers\ArrayHelper::map($model->financialIndicatorLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
             [
-              'label'=>'Financial stabilties ',
+              'label'=>'Финансовые коэффициенты ',
               'attribute'=>'financial_stabilties.text',
               'value' => implode(' ,<br>  ',\yii\helpers\ArrayHelper::map($model->financialStabilities, 'id', 'text')),
             ],
             [
-              'label'=>'License link ',
+              'label'=>'Лицензии  ',
+              'attribute'=>'licenses.text',
+              'value' => implode(' ,<br>  ',\yii\helpers\ArrayHelper::map($model->licenses, 'id', 'text')),
+            ],
+
+            [
+              'label'=>'Лицензии ( подробнее ) ',
               'attribute'=>'license_links.link',
-              'value' => implode(' ,<br>  ',\yii\helpers\ArrayHelper::map($model->licenseLinks, 'id', 'link')),
-            ],
-            [
-              'label'=>'Enforcement proceedings title',
-              'attribute'=>'enforcement_proceedings.title',
-              'value' => implode(' ,<br>  ',\yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id', 'title')),
-            ],
-            [
-              'label'=>'Enforcement proceedings count',
-              'attribute'=>'enforcement_proceedings.count',
-              'value' => implode(' ,<br> ',\yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id', 'count')),
-            ],
-            [
-              'label'=>'Enforcement proceedings link',
-              'attribute'=>'enforcement_proceedings.link',
-              'value' => implode(' ,<br>  ',\yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id', 'link')),
+              'value' => implode(' ,<br>  ',\yii\helpers\ArrayHelper::map($model->licenseLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
 
+            //--------------------------------------------------------------------------------------------------------------------
 
+            [
+              'label'=>'Исполнительные производства',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->enforcementProceedings, 'id',
+                function ($enf) { return
+                   ' <br><b>'.$enf->title.'</b>  /  '.$enf->count.'  /  <a href=https://checko.ru'.$enf->link.' target="_blank">https://checko.ru'.$enf->link.'</a></br>'
+
+                ;}
+              )),
+            ],
 
 
 

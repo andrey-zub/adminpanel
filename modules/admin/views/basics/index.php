@@ -36,15 +36,18 @@ $this->title = 'Организации';
         'dataProvider' => $dataProvider,
         'columns' =>  $searchModel->getExportColumns(),
         'target' => '_popup',
+        'autoXlFormat'=>true,
             'clearBuffers' => true,
             'filename' => "ОРГАНИЗАЦИИ_($date)",
         'dropdownOptions' => [
-                   'label' => 'Export (1-100)',
-                   'class' => 'btn btn-outline-secondary btn-default',
+                   'label' => 'Экспортировать в файл',
+                   'class' => 'btn btn-outline-secondary btn-primary',
                    'itemsBefore' => [
-                       '<div class="dropdown-header">Export All Data</div>',
+                       '<div class="dropdown-header">Экспортировать найденную информацию ( максимум 100 записей )</div>',
                    ],
                ],
+
+
 
     ]) . "\n".
     GridView::widget([
@@ -60,7 +63,7 @@ $this->title = 'Организации';
             ],
 
             'export' => [
-                   'label' => 'Page',
+                   'label' => 'ЭКспортировать основную информацию на странице  ',
 
                ],
                'exportContainer' => [
