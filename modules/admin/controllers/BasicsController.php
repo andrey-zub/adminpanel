@@ -5,7 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\Basics;
 use app\modules\admin\models\BasicsSearch;
-use app\modules\admin\models\BasicsExport;
+use app\modules\admin\models\BasicsFindInn;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -101,4 +101,24 @@ class BasicsController extends AppAdminController
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    //----------------------------------------------------------------------------------------
+
+    public function actionBasicsInn(){
+      Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+
+
+        $searchModel = new BasicsFindInn();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+
+      Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+        return $this->render('basics-inn', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+
+        ]);
+    }
+
+
 }

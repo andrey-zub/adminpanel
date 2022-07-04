@@ -69,13 +69,13 @@ class BasicsSearch extends Basics
             return $dataProvider;
         }
 
+      
         // grid filtering conditions
         $query->andFilterWhere(['id' => $this->id,]);
 
         $query->andFilterWhere(['like', 'org_name', $this->org_name])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'ogrn', $this->ogrn])
-            ->andFilterWhere(['like', 'inn', $this->inn])
             ->andFilterWhere(['like', 'kpp', $this->kpp])
             ->andFilterWhere(['like', 'okpp', $this->okpp])
             ->andFilterWhere(['like', 'date_reg', $this->date_reg])
@@ -87,7 +87,14 @@ class BasicsSearch extends Basics
             ->andFilterWhere(['like', 'avg_workers', $this->avg_workers])
             ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
             ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-            ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+            ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
+            ->andFilterWhere(['like','inn',$this->inn]);
+             //--------------------------------------------------------------------------
+
+
+
+
+             //---------------------------------------------------------------------------
 
         // $query->with([
         //   'ratings',

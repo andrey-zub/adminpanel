@@ -11,7 +11,7 @@ use Yii;
 /**
  * BasicsSearch represents the model behind the search form of `app\modules\admin\models\Basics`.
  */
-class BasicsExport extends Basics
+class BasicsFindInn extends Basics
 {
     /**
      * {@inheritdoc}
@@ -72,40 +72,27 @@ class BasicsExport extends Basics
         ]);
 
 
-        $query->with([
-          'ratings',
-          'managements',
-          'phones',
-          'emails',
-          'sites',
-          'activities',
-          'activitiesLinks',
-          'trademarksLinks',
-          'connectionsLinks',
-          'predecessorsLinks',
-          'successorsLinks',
-          'branches',
-          'predecessors',
-          'successors',
-          'customers',
-          'customerLinks',
-          'sellers',
-          'sellerLinks',
-          'founderUrs',
-          'founderForeigns',
-          'financialIndicators',
-          'financialIndicatorLinks',
-          'financialStabilities',
-          'licenseLinks',
-          'connections',
-          'trademarks',
-          'enforcementProceedings'
-        ]);
+        $qr_inn = explode(' ',trim($this->inn));
+        $qr = array_unique($qr_inn);
+        $result= array();
+        foreach( $qr as $arr){
+          if (strlen($arr) >= 10){
+            if( is_numeric($arr) ){
+                array_push($result,$arr);
+             };
+          };
+        }
+
+
+        $session = Yii::$app->session;
+        $session->set('INN',$result);
 
         $query->andFilterWhere(['like', 'org_name', $this->org_name])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'ogrn', $this->ogrn])
-            ->andFilterWhere(['like', 'inn', $this->inn])
+
+            ->andFilterWhere(['in', 'inn', $qr])
+
             ->andFilterWhere(['like', 'kpp', $this->kpp])
             ->andFilterWhere(['like', 'okpp', $this->okpp])
             ->andFilterWhere(['like', 'date_reg', $this->date_reg])

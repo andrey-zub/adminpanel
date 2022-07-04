@@ -7,16 +7,15 @@ use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 // use kartik\helpers\Html;
 
-$this->title = 'Организации';
+$this->title = 'Организации [ ИНН ]';
 
   $this->params['breadcrumbs'][] = array(
       'label'=> 'ИП',
       'url'=>Yii::$app->urlManager->createUrl(['admin/basic-ips'])
   );
-
   $this->params['breadcrumbs'][] = array(
-      'label'=> 'Организации[ ИНН ]',
-      'url'=>Yii::$app->urlManager->createUrl(['admin/basics/basics-inn'])
+      'label'=> 'Организации',
+      'url'=>Yii::$app->urlManager->createUrl(['admin/basics'])
   );
     $this->params['breadcrumbs'][] = $this->title;
 
@@ -24,7 +23,8 @@ $this->title = 'Организации';
 <div class="basics-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-  <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+      <h6>( Для поиска организаций по ИНН вставте в строку поиска значения через пробел )</h6>
+  <?php  echo $this->render('_search_inn', ['model' => $searchModel]); ?>
 
 <?
     Pjax::begin();
@@ -43,7 +43,7 @@ $this->title = 'Организации';
         'target' => '_popup',
         'autoXlFormat'=>true,
             'clearBuffers' => true,
-            'filename' => "ОРГАНИЗАЦИИ_($date)",
+            'filename' => "ОРГАНИЗАЦИИ_ИНН($date)",
         'dropdownOptions' => [
                    'label' => 'Экспортировать в файл',
                    'class' => 'btn btn-outline-secondary btn-primary',
@@ -68,7 +68,7 @@ $this->title = 'Организации';
             ],
 
             'export' => [
-                   'label' => 'ЭКспортировать основную информацию на странице  ',
+                   'label' => 'Экспортировать основную информацию на странице  ',
 
                ],
                'exportContainer' => [
