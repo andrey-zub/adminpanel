@@ -1,4 +1,4 @@
-<?
+<?php
 
 $this->title = 'Admin panel';
 $this->params['breadcrumbs'][] = array(

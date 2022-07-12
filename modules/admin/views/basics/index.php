@@ -26,7 +26,7 @@ $this->title = 'Организации';
     <h1><?= Html::encode($this->title) ?></h1>
   <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<?
+<?php
     Pjax::begin();
 
 
