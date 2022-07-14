@@ -179,7 +179,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
               'label'=>'Заказчики',
-              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->sellers, 'id',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->customers, 'id',
                 function ($cus) { return
                    '  <br> <b>ФЗ</b>    /       <b>Контракты  </b>    /     <b>Общая сумма</b> </br>
                    <br>'.$cus->fz.'  /  '.$cus->contract.'  /  '.$cus->count.'</br>'

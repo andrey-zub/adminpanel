@@ -20,23 +20,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'created_at') ?>
-
-    <?= $form->field($model, 'updated_at') ?>
-
-    <?= $form->field($model, 'deleted_at') ?>
-
     <?= $form->field($model, 'name_ip') ?>
 
     <?php // echo $form->field($model, 'full_name_ip') ?>
 
-    <?php // echo $form->field($model, 'status') ?>
+    <?php  echo $form->field($model, 'status') ?>
 
-    <?php // echo $form->field($model, 'ogrn') ?>
+    <?php  echo $form->field($model, 'ogrn') ?>
 
-    <?php // echo $form->field($model, 'inn') ?>
+    <?php  echo $form->field($model, 'inn') ?>
 
-    <?php // echo $form->field($model, 'okpp') ?>
+    <?php  echo $form->field($model, 'okpp') ?>
 
     <?php // echo $form->field($model, 'date_reg') ?>
 
@@ -47,8 +41,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'main_activity_text') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Обновить', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

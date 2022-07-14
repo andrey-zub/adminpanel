@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\BasicIps */
 
-$this->title = "ИП #$model->id";
+$this->title = "$model->name_ip";
 $this->params['breadcrumbs'][] = array(
     'label'=> 'Организации',
     'url'=>Yii::$app->urlManager->createUrl(['admin/basics'])
@@ -56,66 +56,65 @@ $this->params['breadcrumbs'][] = $this->title;
             'main_activity_text:ntext',
 
 //----------------------------Связанные поля--------------------------------------------------
+        [
+          'label'=>'Виды деятельности',
+          'value' => implode(',</br>', \yii\helpers\ArrayHelper::map($model->activityIps, 'id',
+            function ($activList) { return '<br><b>'.$activList->num.'</b>  /  '.$activList->text;}
+          )),
+        ],
+
             [
-              'label'=>'Activity ips',
-              'attribute'=>'activity_ips.text',
-              'value' => implode('.  ',\yii\helpers\ArrayHelper::map($model->activityIps, 'id', 'text')),
+              'label'=>'Виды деятельности ( подробнее )',
+              'attribute'=>'activities_link_ips.link',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->activitiesLinkIps, 'id', function($activLink){
+                  return '<a href='.$activLink->link.' target="_blank">'.$activLink->link.'</a>';
+              })),
             ],
             [
-              'label'=>'Activity ips num',
-              'attribute'=>'activity_ips.num',
-              'value' => implode(';     ',\yii\helpers\ArrayHelper::map($model->activityIps, 'id', 'num')),
-            ],
-            [
-              'label'=>'Activity ips link',
-              'attribute'=>'activity_link_ips.text',
-              'value' => implode('.  ',\yii\helpers\ArrayHelper::map($model->activitiesLinkIps, 'id', 'link')),
-            ],
-            [
-              'label'=>'Connecton ips',
+              'label'=>'Связи',
               'attribute'=>'connecton_ips.text',
-              'value' => implode('.  ',\yii\helpers\ArrayHelper::map($model->connectionIps, 'id', 'text')),
+              'value' => implode(',</br>', \yii\helpers\ArrayHelper::map($model->connectionIps, 'id',
+                function ($conn) { return '<br><b>'.$conn->title.'</b>  /  '.$conn->text;}
+                )),
+            ],
+
+            [
+              'label'=>'Поставшики',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->sellerIps, 'id',
+                function ($cus) { return
+                   '  <br> <b>ФЗ</b>    /       <b>Контракты  </b>    /     <b>Общая сумма</b> </br>
+                   <br>'.$cus->fz.'  /  '.$cus->contract.'  /  '.$cus->count.'</br>'
+
+                ;}
+              )),
             ],
             [
-              'label'=>'Customer ips fz',
-              'attribute'=>'customer_ips.fz',
-              'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->customerIps, 'id', 'fz')),
+              'label'=>'Поставщики ( подробнее )',
+              'attribute'=>'seller_links.link',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->sellerLinkIps, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
+
             [
-              'label'=>'Customer ips contract',
-              'attribute'=>'customer_ips.contract',
-              'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->customerIps, 'id', 'contract')),
+              'label'=>'Заказчики',
+              'value' => implode('</br>---------------------------------', \yii\helpers\ArrayHelper::map($model->customerIps, 'id',
+                function ($cus) { return
+                   '  <br> <b>ФЗ</b>    /       <b>Контракты  </b>    /     <b>Общая сумма</b> </br>
+                   <br>'.$cus->fz.'  /  '.$cus->contract.'  /  '.$cus->count.'</br>'
+
+                ;}
+              )),
             ],
+
             [
-              'label'=>'Customer ips count',
-              'attribute'=>'customer_ips.count',
-              'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->customerIps, 'id', 'count')),
+              'label'=>'Заказчики ( подробнее )',
+              'attribute'=>'customer_links.link',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->customerLinkIps, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
-            [
-              'label'=>'Customer ips link',
-              'attribute'=>'customer_link_ips.link',
-              'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->customerLinkIps, 'id', 'link')),
-            ],
-            [
-              'label'=>'Seller ips fz',
-              'attribute'=>'seller_ips.fz',
-              'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->sellerIps, 'id', 'fz')),
-            ],
-            [
-              'label'=>'Seller ips contract',
-              'attribute'=>'seller_ips.contract',
-              'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->sellerIps, 'id', 'contract')),
-            ],
-            [
-              'label'=>'Seller ips count',
-              'attribute'=>'seller_ips.count',
-              'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->sellerIps, 'id', 'count')),
-            ],
-            [
-              'label'=>'Seller ips link',
-              'attribute'=>'seller_link_ips.link',
-              'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->sellerLinkIps, 'id', 'link')),
-            ],
+//------------------------------------------------------------------------------------------
             [
               'label'=>'Legal case title ',
               'attribute'=>'legal_cases.title',
@@ -125,26 +124,30 @@ $this->params['breadcrumbs'][] = $this->title;
               'label'=>'Legal case count ',
               'attribute'=>'legal_cases.count',
               'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->legalCases, 'id', 'count')),
-            ],
             [
+            ],
               'label'=>'Legal case link ',
               'attribute'=>'legal_case_links.link',
               'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', 'link')),
             ],
+
+
+            //----------------------------------------------------
+
             [
-              'label'=>'Phone ips ',
-              'attribute'=>'phone_ips.number',
-              'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->phoneIps, 'id', 'number')),
+              'label'=>'Контактная информация ( телефон )',
+              'attribute'=>'phones.number',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->phoneIps, 'id', 'number')),
             ],
             [
-              'label'=>'Email ips ',
-              'attribute'=>'email_ips.addr',
-              'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->emailIps, 'id', 'addr')),
+              'label'=>'Контактная информация ( электронная почта )',
+              'attribute'=>'emails.addr',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->emailIps, 'id', 'addr')),
             ],
             [
-              'label'=>'Site ips',
-              'attribute'=>'site_ips.addr',
-              'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->siteIps, 'id', 'addr')),
+              'label'=>'Контактная информация ( сайт )',
+              'attribute'=>'sites.addr',
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->siteIps, 'id', 'addr')),
             ],
 
 

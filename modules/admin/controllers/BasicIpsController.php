@@ -40,14 +40,13 @@ class BasicIpsController extends Controller
         $searchModel = new BasicIpsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $exportModel = new BasicIpsExport();
-        $dataProviderExport = $exportModel->search(Yii::$app->request->queryParams);
+
         Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'dataProviderExport' => $dataProviderExport,
+          
 
         ]);
     }

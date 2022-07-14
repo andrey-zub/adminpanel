@@ -78,21 +78,29 @@ class BasicIpsSearch extends BasicIps
   // grid filtering conditions
   $query->andFilterWhere([
       'id' => $this->id,
-      'created_at' => $this->created_at,
-      'updated_at' => $this->updated_at,
-      'deleted_at' => $this->deleted_at,
+      // 'created_at' => $this->created_at,
+      // 'updated_at' => $this->updated_at,
+      // 'deleted_at' => $this->deleted_at,
   ]);
 
-  $query->andFilterWhere(['like', 'name_ip', $this->name_ip])
-      ->andFilterWhere(['like', 'full_name_ip', $this->full_name_ip])
-      ->andFilterWhere(['like', 'status', $this->status])
-      ->andFilterWhere(['like', 'ogrn', $this->ogrn])
-      ->andFilterWhere(['like', 'inn', $this->inn])
-      ->andFilterWhere(['like', 'okpp', $this->okpp])
-      ->andFilterWhere(['like', 'date_reg', $this->date_reg])
-      ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
-      ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-      ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+
+
+              // $query->andWhere("MATCH(name_ip) AGAINST ('" . $this->name_ip . "')")
+
+
+
+
+            $query->andFilterWhere(['like', 'name_ip', $this->name_ip])
+                ->andFilterWhere(['like', 'full_name_ip', $this->full_name_ip])
+                ->andFilterWhere(['like', 'status', $this->status])
+                ->andFilterWhere(['like', 'ogrn', $this->ogrn])
+                ->andFilterWhere(['like', 'inn', $this->inn])
+                ->andFilterWhere(['like', 'okpp', $this->okpp])
+                ->andFilterWhere(['like', 'date_reg', $this->date_reg])
+                ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
+                ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
+                ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+
 
 
 
