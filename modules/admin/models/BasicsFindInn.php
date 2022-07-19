@@ -91,7 +91,7 @@ class BasicsFindInn extends Basics
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'ogrn', $this->ogrn])
 
-            ->andFilterWhere(['in', 'inn', $qr])
+            ->andFilterWhere(['in', 'inn', $result])
 
             ->andFilterWhere(['like', 'kpp', $this->kpp])
             ->andFilterWhere(['like', 'okpp', $this->okpp])

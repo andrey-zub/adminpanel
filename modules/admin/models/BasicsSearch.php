@@ -69,7 +69,19 @@ class BasicsSearch extends Basics
             return $dataProvider;
         }
 
-      
+
+
+                $qr_inn = explode(' ',trim($this->inn));
+                $qr = array_unique($qr_inn);
+                $result= array();
+                foreach( $qr as $arr){
+                  if (strlen($arr) >= 10){
+                    if( is_numeric($arr) ){
+                        array_push($result,$arr);
+                     };
+                  };
+                }
+
         // grid filtering conditions
         $query->andFilterWhere(['id' => $this->id,]);
 
@@ -88,7 +100,8 @@ class BasicsSearch extends Basics
             ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
             ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
             ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
-            ->andFilterWhere(['like','inn',$this->inn]);
+
+            ->andFilterWhere(['in', 'inn', $result]);
              //--------------------------------------------------------------------------
 
 
