@@ -7,3 +7,16 @@ services:
       - ./:/app:delegated
     ports:
       - '8000:80'
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.checko.entrypoints=https"
+      - "traefik.http.routers.checko.rule=Host(`checko.dev1.trex-studio.host`)"
+      - "traefik.http.routers.checko.tls=true"
+      - "traefik.http.routers.checko.tls.certresolver=letsEncrypt"
+
+
+networks:
+  web:
+    external: true
