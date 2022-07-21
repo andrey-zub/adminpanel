@@ -26,7 +26,7 @@ $this->title = 'Организации [ ИНН ]';
       <h6>( Для поиска организаций по ИНН вставте в строку поиска значения через пробел )</h6>
   <?php  echo $this->render('_search_inn', ['model' => $searchModel]); ?>
 
-<?
+<?php
     Pjax::begin();
 
 

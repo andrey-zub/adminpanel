@@ -128,7 +128,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
               'label'=>'Legal case link ',
               'attribute'=>'legal_case_links.link',
-              'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', 'link')),
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
 
 

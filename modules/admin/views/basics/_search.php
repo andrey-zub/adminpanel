@@ -18,11 +18,11 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?// $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'org_name') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <? //$form->field($model, 'status') ?>
 
     <?= $form->field($model, 'ogrn') ?>
 
@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'date_reg') ?>
 
-    <?php  echo $form->field($model, 'name_eng') ?>
+    <?php // echo $form->field($model, 'name_eng') ?>
 
     <?php // echo $form->field($model, 'ur_addr') ?>
 
