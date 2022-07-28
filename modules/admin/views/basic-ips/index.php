@@ -51,7 +51,7 @@ echo ExportMenu::widget([
         'filename' => "ИП_($date)",
     'dropdownOptions' => [
                'label' => 'Экспортировать в файл',
-               'class' => 'btn btn-outline-secondary btn-default',
+               'class' => 'btn btn-outline-secondary btn-primary',
                'itemsBefore' => [
                    '<div class="dropdown-header">Export All Data</div>',
                ],
@@ -76,9 +76,12 @@ GridView::widget([
            'exportContainer' => [
                'class' => 'btn-group mr-2 me-2'
            ],
+
+
            // your toolbar can include the additional full export menu
            'toolbar' => [
-               '{export}',
+              // '{export}',
+              // '{toggleData}',
            ],
     'rowOptions' => function ($model, $key, $index, $grid){
       if(($model->id % 2) == 0) { return ['style' => 'background-color:#dce0e0;']; }

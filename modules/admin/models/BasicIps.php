@@ -133,6 +133,56 @@ class BasicIps extends \yii\db\ActiveRecord
           'full_name_ip:ntext',
           'date_reg',
           'ceil_reg',
+          //
+          // [
+          //   'hidden'=>true,
+          //   'headerOptions'=>['class'=>'kv-sticky-column'],
+          //   'contentOptions'=>['class'=>'kv-sticky-column'],
+          //    'label' => 'Вид деятельности ( наименование )',
+          //    'attribute'=>'activity_ips.text',
+          //    'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->activityIps, 'id', 'text')); },
+          // ],
+          // [
+          //   'hidden'=>true,
+          //   'headerOptions'=>['class'=>'kv-sticky-column'],
+          //   'contentOptions'=>['class'=>'kv-sticky-column'],
+          //    'label' => 'Вид деятельности ( номер )',
+          //    'attribute'=>'activity_ips.num',
+          //    'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->activityIps, 'id', 'num')); },
+          // ],
+          // [
+          //   'hidden'=>true,
+          //   'headerOptions'=>['class'=>'kv-sticky-column'],
+          //   'contentOptions'=>['class'=>'kv-sticky-column'],
+          //   'label'=>'Вид деятельности ( подробнее )',
+          //   'attribute'=>'activity_link_ips.text',
+          //   'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->activitiesLinkIps, 'id', 'link')); },
+          // ],
+          // [
+          //   'hidden'=>true,
+          //   'headerOptions'=>['class'=>'kv-sticky-column'],
+          //   'contentOptions'=>['class'=>'kv-sticky-column'],
+          //   'label'=>'Контактная информация ( телефон ) ',
+          //   'attribute'=>'phone_ips.number',
+          //   'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->phoneIps, 'id', 'number')); },
+          // ],
+          // [
+          //   'hidden'=>true,
+          //   'headerOptions'=>['class'=>'kv-sticky-column'],
+          //   'contentOptions'=>['class'=>'kv-sticky-column'],
+          //   'label'=>'Контактная информация ( элетронная почта ) ',
+          //   'attribute'=>'email_ips.addr',
+          //   'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->emailIps, 'id', 'addr')); },
+          // ],
+          // [
+          //   'hidden'=>true,
+          //   'headerOptions'=>['class'=>'kv-sticky-column'],
+          //   'contentOptions'=>['class'=>'kv-sticky-column'],
+          //   'label'=>'Контактная информация ( сайт )',
+          //   'attribute'=>'site_ips.addr',
+          //   'value' => function($model) { return join(', ', yii\helpers\ArrayHelper::map($model->siteIps, 'id', 'addr')); },
+          // ],
+
           ['class' => 'yii\grid\SerialColumn'],
       ];
     }
