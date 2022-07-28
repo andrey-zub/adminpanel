@@ -30,9 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?php
-
-        DetailView::widget([
+    <?= DetailView::widget([
         'model' => $model,
 
         'template' => function($attribute, $index, $widget){
@@ -130,9 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
               'label'=>'Legal case link ',
               'attribute'=>'legal_case_links.link',
-              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', function($link){
-                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
-              })),
+              'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', 'link')),
             ],
 
 
