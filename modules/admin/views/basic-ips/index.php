@@ -46,7 +46,7 @@ $date = date('m/d/Y h:i:s a', time());
 echo ExportMenu::widget([
     'dataProvider' => $dataProvider,
     'columns' =>  $searchModel->getExportColumns(),
-    'target' => '_popup',
+    'target' => '_blank',
         'clearBuffers' => true,
         'filename' => "ИП_($date)",
     'dropdownOptions' => [
@@ -71,7 +71,7 @@ GridView::widget([
         ],
 
         'export' => [
-               'label' => 'Page',
+               'label' => 'Экспортировать текущую страницу',
            ],
            'exportContainer' => [
                'class' => 'btn-group mr-2 me-2'

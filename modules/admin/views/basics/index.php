@@ -40,7 +40,7 @@ $this->title = 'Организации';
     echo ExportMenu::widget([
         'dataProvider' => $dataProvider,
         'columns' =>  $searchModel->getExportColumns(),
-        'target' => '_popup',
+        'target' => '_blank',
         'autoXlFormat'=>true,
             'clearBuffers' => true,
             'filename' => "ОРГАНИЗАЦИИ_($date)",
@@ -68,7 +68,7 @@ $this->title = 'Организации';
             ],
 
             'export' => [
-                   'label' => 'ЭКспортировать основную информацию на странице  ',
+                   'label' => 'Экспортировать текущую страницу ',
 
                ],
                'exportContainer' => [

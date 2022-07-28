@@ -61,19 +61,17 @@ class BasicIpsSearch extends BasicIps
 
 //----------------------------------------------------------------------
 
+$qr_inn = explode(' ',trim($this->inn));
+$qr = array_unique($qr_inn);
+$result= array();
+foreach( $qr as $arr){
+  if (strlen($arr) >= 10){
+    if( is_numeric($arr) ){
+        array_push($result,$arr);
+     };
+  };
+}
 
-  // $query->with([
-  //   'activityIps',
-  //   'activitiesLinkIps',
-  //   'connectionIps',
-  //   'customerIps',
-  //   'customerLinkIps',
-  //   'legalCases',
-  //   'legalCaseLinks',
-  //   'phoneIps',
-  //   'emailIps',
-  //   'siteIps',
-  // ]);
 
   // grid filtering conditions
   $query->andFilterWhere([
@@ -94,12 +92,15 @@ class BasicIpsSearch extends BasicIps
                 ->andFilterWhere(['like', 'full_name_ip', $this->full_name_ip])
                 ->andFilterWhere(['like', 'status', $this->status])
                 ->andFilterWhere(['like', 'ogrn', $this->ogrn])
-                ->andFilterWhere(['like', 'inn', $this->inn])
                 ->andFilterWhere(['like', 'okpp', $this->okpp])
                 ->andFilterWhere(['like', 'date_reg', $this->date_reg])
                 ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
                 ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-                ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+                ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
+
+                ->andFilterWhere(['in', 'inn', $result]);
+                //----------------------------------------
+
 
 
 
