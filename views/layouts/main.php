@@ -45,7 +45,8 @@ AppAsset::register($this);
               'label' => 'menu',
               'items' => [
 
-                   ['label' => 'Admin panel ', 'url' => ['/admin']],
+                   ['label' => 'ОРГАНИЗАЦИИ', 'url' => ['/admin/basics']],
+                   ['label' => 'ИП', 'url' => ['/admin/basic-ips']],
 
 
 
@@ -71,7 +72,7 @@ AppAsset::register($this);
     ]);
 
 
-         
+
 
 
     NavBar::end();

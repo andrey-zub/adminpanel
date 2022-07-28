@@ -37,14 +37,8 @@ class BasicsSearch extends Basics
 
         $limit = 100;
 
-              // $params = [
-              //     'match' => [
-              //         'org_name' => $this->org_name
-              //       ]
-              //     ];
 
-
-        $query = Basics::find();//->query($params);
+        $query = Basics::find();
               $query->limit($limit);
 
         // add conditions that should always apply here
@@ -71,6 +65,8 @@ class BasicsSearch extends Basics
 
 
 
+
+
                 $qr_inn = explode(' ',trim($this->inn));
                 $qr = array_unique($qr_inn);
                 $result= array();
@@ -83,65 +79,44 @@ class BasicsSearch extends Basics
                 }
 
         // grid filtering conditions
-        $query->andFilterWhere(['id' => $this->id,]);
+        $query->andFilterWhere(['id' => $this->id,])
+        ->andFilterWhere(['like', 'status', $this->status])
+         ->andFilterWhere(['like', 'date_reg', $this->date_reg])
+         ->andFilterWhere(['like', 'name_eng', $this->name_eng])
+         ->andFilterWhere(['like', 'ur_addr', $this->ur_addr])
+         ->andFilterWhere(['like', 'org_prav_form', $this->org_prav_form])
+         ->andFilterWhere(['like', 'ust_cap', $this->ust_cap])
+         ->andFilterWhere(['like', 'spec_nlg_rej', $this->spec_nlg_rej])
+         ->andFilterWhere(['like', 'avg_workers', $this->avg_workers])
+         ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
+         ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
 
-        $query->andFilterWhere(['like', 'org_name', $this->org_name])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'ogrn', $this->ogrn])
-            ->andFilterWhere(['like', 'kpp', $this->kpp])
-            ->andFilterWhere(['like', 'okpp', $this->okpp])
-            ->andFilterWhere(['like', 'date_reg', $this->date_reg])
-            ->andFilterWhere(['like', 'name_eng', $this->name_eng])
-            ->andFilterWhere(['like', 'ur_addr', $this->ur_addr])
-            ->andFilterWhere(['like', 'org_prav_form', $this->org_prav_form])
-            ->andFilterWhere(['like', 'ust_cap', $this->ust_cap])
-            ->andFilterWhere(['like', 'spec_nlg_rej', $this->spec_nlg_rej])
-            ->andFilterWhere(['like', 'avg_workers', $this->avg_workers])
-            ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
-            ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-            ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
+         ->andFilterWhere(['in', 'inn', $result]);
 
-            ->andFilterWhere(['in', 'inn', $result]);
+         // ->andFilterWhere(['like', 'org_name', $this->org_name])
+         // ->andFilterWhere(['like', 'ogrn', $this->ogrn])
+         // ->andFilterWhere(['like', 'kpp', $this->kpp])
+         // ->andFilterWhere(['like', 'okpp', $this->okpp])
+         // ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
+
+         if (!empty($this->org_name)) {
+           $query->andWhere("MATCH(org_name) AGAINST ('" . $this->org_name . "')");
+         }
+         if (!empty($this->ogrn)) {
+           $query->andWhere("MATCH(ogrn) AGAINST ('" . $this->ogrn . "')");
+         }
+         if (!empty($this->kpp)) {
+           $query->andWhere("MATCH(kpp) AGAINST ('" . $this->kpp . "')");
+         }
+         if (!empty($this->okpp)) {
+           $query->andWhere("MATCH(okpp) AGAINST ('" . $this->okpp . "')");
+         }
+         if (!empty($this->main_activity_num)) {
+           $query->andWhere("MATCH(main_activity_num) AGAINST ('" . $this->main_activity_num . "')");
+         }
+
+
              //--------------------------------------------------------------------------
-
-
-
-
-             //---------------------------------------------------------------------------
-
-        // $query->with([
-        //   'ratings',
-        //   'managements',
-        //   'phones',
-        //   'emails',
-        //   'sites',
-        //   'activities',
-        //   'activitiesLinks',
-        //   'trademarksLinks',
-        //   'connectionsLinks',
-        //   'predecessorsLinks',
-        //   'successorsLinks',
-        //   'branches',
-        //   'predecessors',
-        //   'successors',
-        //   'customers',
-        //   'customerLinks',
-        //   'sellers',
-        //   'sellerLinks',
-        //   'founderUrs',
-        //   'founderForeigns',
-        //   'financialIndicators',
-        //   'financialIndicatorLinks',
-        //   'financialStabilities',
-        //   'licenseLinks',
-        //   'connections',
-        //   'trademarks',
-        //   'enforcementProceedings'
-        // ]);
-
-
-
-
 
         return $dataProvider;
     }

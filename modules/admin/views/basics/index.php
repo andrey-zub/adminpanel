@@ -43,12 +43,13 @@ $this->title = 'Организации';
         'target' => '_blank',
         'autoXlFormat'=>true,
             'clearBuffers' => true,
+            //'batchSize' => 10,
             'filename' => "ОРГАНИЗАЦИИ_($date)",
         'dropdownOptions' => [
-                   'label' => 'Экспортировать в файл',
+                   'label' => 'Экспортировать в файл ',
                    'class' => 'btn btn-outline-secondary btn-primary ',
                    'itemsBefore' => [
-                       '<div class="dropdown-header">Экспортировать найденную информацию ( максимум 100 записей )</div>',
+                       '<div class="dropdown-header">Экспортировать найденную информацию ( максимум 1000 первых записей )</div>',
                    ],
                ],
 
@@ -67,17 +68,16 @@ $this->title = 'Организации';
                 'heading' => '<h1 class="panel-title"> Basics </h3>',
             ],
 
-            'export' => [
-
-               ],
-               'exportContainer' => [
-                   'class' => 'btn-group mr-2 me-2'
-               ],
-
+            'export' => [ 'label' => 'Экспортировать текущую страницу'  ],
+               'exportContainer' => [ 'class' => 'btn-group mr-2 me-2'  ],
+            // 'exportConfig' =>[
+            //   'filename'=>"ОРГАНИЗАЦИИ_($date)",
+            // ],
 
                // your toolbar can include the additional full export menu
                'toolbar' => [
                    '{export}',
+                   '{toggleData}',
 
                ],
         'rowOptions' => function ($model, $key, $index, $grid){
