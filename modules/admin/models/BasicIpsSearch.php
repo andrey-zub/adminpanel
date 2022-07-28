@@ -61,6 +61,7 @@ class BasicIpsSearch extends BasicIps
 
 //----------------------------------------------------------------------
 
+
 $qr_inn = explode(' ',trim($this->inn));
 $qr = array_unique($qr_inn);
 $result= array();
@@ -92,15 +93,12 @@ foreach( $qr as $arr){
                 ->andFilterWhere(['like', 'full_name_ip', $this->full_name_ip])
                 ->andFilterWhere(['like', 'status', $this->status])
                 ->andFilterWhere(['like', 'ogrn', $this->ogrn])
+                ->andFilterWhere(['in', 'inn', $result])
                 ->andFilterWhere(['like', 'okpp', $this->okpp])
                 ->andFilterWhere(['like', 'date_reg', $this->date_reg])
                 ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
                 ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-                ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
-
-                ->andFilterWhere(['in', 'inn', $result]);
-                //----------------------------------------
-
+                ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
 
 
 
