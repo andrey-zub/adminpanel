@@ -46,7 +46,7 @@ $this->title = 'Организации';
             'filename' => "ОРГАНИЗАЦИИ_($date)",
         'dropdownOptions' => [
                    'label' => 'Экспортировать в файл',
-                   'class' => 'btn btn-outline-secondary btn-primary',
+                   'class' => 'btn btn-outline-secondary btn-primary ',
                    'itemsBefore' => [
                        '<div class="dropdown-header">Экспортировать найденную информацию ( максимум 100 записей )</div>',
                    ],
@@ -68,15 +68,22 @@ $this->title = 'Организации';
             ],
 
             'export' => [
+<<<<<<< HEAD
                    'label' => 'Экспортировать текущую страницу ',
+=======
+                   'label' => 'Экспортировать основную информацию на странице  ',
+>>>>>>> 929f34a9c40701e6c5c232db12eb02655ca7184f
 
                ],
                'exportContainer' => [
                    'class' => 'btn-group mr-2 me-2'
                ],
+
+
                // your toolbar can include the additional full export menu
                'toolbar' => [
                    '{export}',
+
                ],
         'rowOptions' => function ($model, $key, $index, $grid){
           if(($model->id % 2) == 0) { return ['style' => 'background-color:#dce0e0;']; }

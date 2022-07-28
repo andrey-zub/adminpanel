@@ -18,19 +18,18 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?// $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'name_ip') ?>
 
-    <?php // echo $form->field($model, 'full_name_ip') ?>
+    <? //$form->field($model, 'status') ?>
 
-    <?php  echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'ogrn') ?>
 
-    <?php  echo $form->field($model, 'ogrn') ?>
-
-    <?php  echo $form->field($model, 'inn') ?>
+    <?= $form->field($model, 'inn') ?>
 
     <?php  echo $form->field($model, 'okpp') ?>
+
 
     <?php // echo $form->field($model, 'date_reg') ?>
 
@@ -38,7 +37,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'main_activity_num') ?>
 
-    <?php // echo $form->field($model, 'main_activity_text') ?>
+    <?php  echo $form->field($model, 'main_activity_text') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
