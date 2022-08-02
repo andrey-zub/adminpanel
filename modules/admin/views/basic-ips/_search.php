@@ -20,13 +20,13 @@ use yii\widgets\ActiveForm;
 
     <?// $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'name_ip') ?>
+    <?php  echo $form->field($model, 'name_ip') ?>
 
     <? //$form->field($model, 'status') ?>
 
-    <?= $form->field($model, 'ogrn') ?>
+    <?php echo $form->field($model, 'ogrn') ?>
 
-    <?= $form->field($model, 'inn') ?>
+    <?php echo $form->field($model, 'inn') ?>
 
     <?php  echo $form->field($model, 'okpp') ?>
 
@@ -38,6 +38,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'main_activity_num') ?>
 
     <?php  echo $form->field($model, 'main_activity_text') ?>
+
+    <?php echo $form->field($model, 'full_name_ip') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>

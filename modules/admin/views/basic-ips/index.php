@@ -32,61 +32,59 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 
 
-
-
-
-
 $date = date('m/d/Y h:i:s a', time());
 
 
 
 
 //=--------------------------------------------------------------------------------------------------------------------------
+    //
+    // echo ExportMenu::widget([
+    //     'dataProvider' => $dataProvider,
+    //     'columns' =>  $searchModel->getExportColumns(),
+    //     'target' => '_blank',
+    //     'autoXlFormat'=>true,
+    //         'clearBuffers' => true,
+    //
+    //         'filename' => "ИП_($date)",
+    //     'dropdownOptions' => [
+    //                'label' => 'Экспортировать в файл ',
+    //                'class' => 'btn btn-outline-secondary btn-primary ',
+    //                'itemsBefore' => [
+    //                    '<div class="dropdown-header">Экспортировать найденную информацию ( максимум 100 первых записей )</div>',
+    //                ],
+    //            ],
+    //
+    // ]) . "\n".
 
-echo ExportMenu::widget([
-    'dataProvider' => $dataProvider,
-    'columns' =>  $searchModel->getExportColumns(),
-    'target' => '_blank',
-        'clearBuffers' => true,
-        'filename' => "ИП_($date)",
-    'dropdownOptions' => [
-               'label' => 'Экспортировать в файл',
-               'class' => 'btn btn-outline-secondary btn-primary',
-               'itemsBefore' => [
-                   '<div class="dropdown-header">Export All Data</div>',
-               ],
-           ],
+       echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => $searchModel->getGridColumns(),
+             'options' =>['style' => 'width: 2000px;'],
+            'headerContainer' => ['class' => 'kv-table-header', 'style' => 'float-left'],
 
-]) . "\n".
-GridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
-    'columns' =>  $searchModel->getGridColumns(),
-    'options' =>['style' => 'width: 2500px;'],
-    'layout' => "{summary}\n{pager}\n{items}\n{summary}\n{pager}",
+            'panel' => [
+                    'type' => 'primary',
+                    'heading' => '<h1 class="panel-title"> Basics_ips </h3>',
+                ],
+                'panelTemplate' =>"{pager}\n{panelHeading}\n{panelBefore}\n{items}\n{pager}",
 
-    'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<h1 class="panel-title"> Basics </h3>',
-        ],
-
-        'export' => [
-               'label' => 'Экспортировать текущую страницу',
-           ],
-           'exportContainer' => [
-               'class' => 'btn-group mr-2 me-2'
-           ],
+                'export' => [ 'label' => 'Экспортировать текущую страницу'  ],
+                   'exportContainer' => [ 'class' => '  btn-group left mr-2 me-2' ],
+                   // your toolbar can include the additional full export menu
+                   'toolbar' => [
+                       '{export}',
+                       '{toggleData}',
+                       'options' => ['class' => 'btn-group ', 'style'=>'float-left']
+                   ],
+            'rowOptions' => function ($model, $key, $index, $grid){
+              if(($model->id % 2) == 0) { return ['style' => 'background-color:#dce0e0;']; }
+            },
+        ]);
 
 
-           // your toolbar can include the additional full export menu
-           'toolbar' => [
-              // '{export}',
-              // '{toggleData}',
-           ],
-    'rowOptions' => function ($model, $key, $index, $grid){
-      if(($model->id % 2) == 0) { return ['style' => 'background-color:#dce0e0;']; }
-    },
-]);
+
 
 
 //------------------------------------------------------------------------------------------------------

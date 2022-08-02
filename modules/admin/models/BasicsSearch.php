@@ -32,6 +32,8 @@ class BasicsSearch extends Basics
     }
 
 
+
+
     public function search($params)
     {
 
@@ -39,7 +41,7 @@ class BasicsSearch extends Basics
 
 
         $query = Basics::find();
-              $query->limit($limit);
+               $query->limit($limit);
 
         // add conditions that should always apply here
 
@@ -47,11 +49,11 @@ class BasicsSearch extends Basics
                     'query' => $query,
                     'pagination' => [
                          'forcePageParam' => false,
-                         'pageSizeParam' => false,
+                         'pageSizeParam' => true,
                         'pageSize' => $limit,
+
                     ]
-                    //
-                    // 'pagination' => false,
+
                 ]);
 
 
@@ -63,17 +65,23 @@ class BasicsSearch extends Basics
             return $dataProvider;
         }
 
-
-
-
-
                 $qr_inn = explode(' ',trim($this->inn));
-                $qr = array_unique($qr_inn);
-                $result= array();
-                foreach( $qr as $arr){
+                $qr1 = array_unique($qr_inn);
+                $result_inn= array();
+                foreach( $qr1 as $arr){
                   if (strlen($arr) >= 10){
                     if( is_numeric($arr) ){
-                        array_push($result,$arr);
+                        array_push($result_inn,$arr);
+                     };
+                  };
+                }
+                $qr_ogrn = explode(' ',trim($this->ogrn));
+                $qr2 = array_unique($qr_ogrn);
+                $result_ogrn= array();
+                foreach( $qr2 as $arr){
+                  if (strlen($arr) >= 10){
+                    if( is_numeric($arr) ){
+                        array_push($result_ogrn,$arr);
                      };
                   };
                 }
@@ -83,36 +91,40 @@ class BasicsSearch extends Basics
         ->andFilterWhere(['like', 'status', $this->status])
          ->andFilterWhere(['like', 'date_reg', $this->date_reg])
          ->andFilterWhere(['like', 'name_eng', $this->name_eng])
-         ->andFilterWhere(['like', 'ur_addr', $this->ur_addr])
          ->andFilterWhere(['like', 'org_prav_form', $this->org_prav_form])
          ->andFilterWhere(['like', 'ust_cap', $this->ust_cap])
          ->andFilterWhere(['like', 'spec_nlg_rej', $this->spec_nlg_rej])
          ->andFilterWhere(['like', 'avg_workers', $this->avg_workers])
          ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
-         ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
+         ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
+         // ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text])
 
-         ->andFilterWhere(['in', 'inn', $result]);
+         ->andFilterWhere(['in', 'ogrn', $result_ogrn])
+         ->andFilterWhere(['in', 'inn', $result_inn]);
 
          // ->andFilterWhere(['like', 'org_name', $this->org_name])
          // ->andFilterWhere(['like', 'ogrn', $this->ogrn])
          // ->andFilterWhere(['like', 'kpp', $this->kpp])
          // ->andFilterWhere(['like', 'okpp', $this->okpp])
-         // ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-
+         // ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num]);
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
          if (!empty($this->org_name)) {
            $query->andWhere("MATCH(org_name) AGAINST ('" . $this->org_name . "')");
          }
-         if (!empty($this->ogrn)) {
-           $query->andWhere("MATCH(ogrn) AGAINST ('" . $this->ogrn . "')");
-         }
+         // if (!empty($this->ogrn)) {
+         //   $query->andWhere("MATCH(ogrn) AGAINST ('" . $this->ogrn . "')");
+         // }
          if (!empty($this->kpp)) {
            $query->andWhere("MATCH(kpp) AGAINST ('" . $this->kpp . "')");
          }
          if (!empty($this->okpp)) {
            $query->andWhere("MATCH(okpp) AGAINST ('" . $this->okpp . "')");
          }
-         if (!empty($this->main_activity_num)) {
-           $query->andWhere("MATCH(main_activity_num) AGAINST ('" . $this->main_activity_num . "')");
+         if (!empty($this->ur_addr)) {
+           $query->andWhere("MATCH(ur_addr) AGAINST ('" . $this->ur_addr . "')");
+         }
+         if (!empty($this->main_activity_text)) {
+           $query->andWhere("MATCH(main_activity_text) AGAINST ('" . $this->main_activity_text . "')");
          }
 
 
@@ -120,4 +132,9 @@ class BasicsSearch extends Basics
 
         return $dataProvider;
     }
+
+
+
+
+
 }

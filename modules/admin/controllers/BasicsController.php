@@ -36,15 +36,18 @@ class BasicsController extends AppAdminController
       Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         $searchModel = new BasicsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        //
-        // $exportModel = new BasicsExport();
-        // $dataProviderExport = $searchModel->search(Yii::$app->request->queryParams);
+
+        // $searchModelExport = new BasicsSearch();
+        // $dataProviderExport = $searchModel->searchExport(Yii::$app->request->queryParams);
+
 
       Yii::$app->db->pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            // 'dataProviderExport' => $dataProviderExport,
+            // 'searchModelExport' => $searchModelExport,
+            //  'dataProviderExport' => $dataProviderExport,
+
         ]);
     }
 

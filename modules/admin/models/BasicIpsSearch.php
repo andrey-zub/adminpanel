@@ -62,16 +62,26 @@ class BasicIpsSearch extends BasicIps
 //----------------------------------------------------------------------
 
 
-$qr_inn = explode(' ',trim($this->inn));
-$qr = array_unique($qr_inn);
-$result= array();
-foreach( $qr as $arr){
-  if (strlen($arr) >= 10){
-    if( is_numeric($arr) ){
-        array_push($result,$arr);
-     };
-  };
-}
+                $qr_inn = explode(' ',trim($this->inn));
+                $qr1 = array_unique($qr_inn);
+                $result_inn= array();
+                foreach( $qr1 as $arr){
+                  if (strlen($arr) >= 10){
+                    if( is_numeric($arr) ){
+                        array_push($result_inn,$arr);
+                     };
+                  };
+                }
+                $qr_ogrn = explode(' ',trim($this->ogrn));
+                $qr2 = array_unique($qr_ogrn);
+                $result_ogrn= array();
+                foreach( $qr2 as $arr){
+                  if (strlen($arr) >= 10){
+                    if( is_numeric($arr) ){
+                        array_push($result_ogrn,$arr);
+                     };
+                  };
+                }
 
 
   // grid filtering conditions
@@ -84,22 +94,36 @@ foreach( $qr as $arr){
 
 
 
-              // $query->andWhere("MATCH(name_ip) AGAINST ('" . $this->name_ip . "')")
 
 
-
-
-            $query->andFilterWhere(['like', 'name_ip', $this->name_ip])
-                ->andFilterWhere(['like', 'full_name_ip', $this->full_name_ip])
+            $query->andFilterWhere(['in', 'inn', $result_inn])
+                ->andFilterWhere(['in', 'ogrn', $result_ogrn])
                 ->andFilterWhere(['like', 'status', $this->status])
-                ->andFilterWhere(['like', 'ogrn', $this->ogrn])
-                ->andFilterWhere(['in', 'inn', $result])
-                ->andFilterWhere(['like', 'okpp', $this->okpp])
                 ->andFilterWhere(['like', 'date_reg', $this->date_reg])
                 ->andFilterWhere(['like', 'ceil_reg', $this->ceil_reg])
-                ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
-                ->andFilterWhere(['like', 'main_activity_text', $this->main_activity_text]);
+                ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num]);
 
+
+                if (!empty($this->name_ip)) {
+                  $query->andWhere("MATCH(name_ip) AGAINST ('" . $this->name_ip . "')");
+                }
+                if (!empty($this->full_name_ip)) {
+                  $query->andWhere("MATCH(full_name_ip) AGAINST ('" . $this->full_name_ip . "')");
+                }
+                // if (!empty($this->ogrn)) {
+                //   $query->andWhere("MATCH(ogrn) AGAINST ('" . $this->ogrn . "')");
+                // }
+                if (!empty($this->okpp)) {
+                  $query->andWhere("MATCH(okpp) AGAINST ('" . $this->okpp . "')");
+                }if (!empty($this->main_activity_text)) {
+                  $query->andWhere("MATCH(main_activity_text) AGAINST ('" . $this->main_activity_text . "')");
+                }
+
+              // ->andFilterWhere(['like', 'name_ip', $this->name_ip])
+              // ->andFilterWhere(['like', 'full_name_ip', $this->full_name_ip])
+              // ->andFilterWhere(['like', 'ogrn', $this->ogrn])
+              // ->andFilterWhere(['like', 'okpp', $this->okpp])
+              // ->andFilterWhere(['like', 'main_activity_num', $this->main_activity_num])
 
 
 

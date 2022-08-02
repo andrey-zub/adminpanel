@@ -116,19 +116,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 //------------------------------------------------------------------------------------------
             [
-              'label'=>'Legal case title ',
+              'label'=>'Судебный прецендент ',
               'attribute'=>'legal_cases.title',
               'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->legalCases, 'id', 'title')),
             ],
             [
-              'label'=>'Legal case count ',
+              'label'=>'Количество судебных дел ',
               'attribute'=>'legal_cases.count',
               'value' => implode(';  ',\yii\helpers\ArrayHelper::map($model->legalCases, 'id', 'count')),
             [
             ],
-              'label'=>'Legal case link ',
+              'label'=>'Арбитражные дела',
               'attribute'=>'legal_case_links.link',
-              'value' => implode('  [---];  ',\yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', 'link')),
+              'value' => implode(',<br>',\yii\helpers\ArrayHelper::map($model->legalCaseLinks, 'id', function($link){
+                  return '<a href='.$link->link.' target="_blank">'.$link->link.'</a>';
+              })),
             ],
 
 

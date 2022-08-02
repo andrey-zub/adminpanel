@@ -20,13 +20,13 @@ use yii\widgets\ActiveForm;
 
 
 
-    <?= $form->field($model, 'org_name') ?>
+    <?php echo $form->field($model, 'org_name') ?>
 
 
 
-    <?= $form->field($model, 'ogrn') ?>
+    <?php echo $form->field($model, 'ogrn') ?>
 
-    <?= $form->field($model, 'inn') ?>
+    <?php echo $form->field($model, 'inn') ?>
 
     <?php  echo $form->field($model, 'kpp') ?>
 
@@ -35,8 +35,6 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'date_reg') ?>
 
     <?php // echo $form->field($model, 'name_eng') ?>
-
-    <?php // echo $form->field($model, 'ur_addr') ?>
 
     <?php // echo $form->field($model, 'org_prav_form') ?>
 
@@ -48,9 +46,13 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'ceil_reg') ?>
 
-    <?php  echo $form->field($model, 'main_activity_num') ?>
+    <?php // echo $form->field($model, 'main_activity_num') ?>
 
-    <?php // echo $form->field($model, 'main_activity_text') ?>
+    <?php  echo $form->field($model, 'main_activity_text') ?>
+
+    <?php  echo $form->field($model, 'ur_addr') ?>
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>

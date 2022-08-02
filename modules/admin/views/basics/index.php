@@ -37,48 +37,47 @@ $this->title = 'Организации';
     //=--------------------------------------------------------------------------------------------------------------------------
 
 
-    echo ExportMenu::widget([
-        'dataProvider' => $dataProvider,
-        'columns' =>  $searchModel->getExportColumns(),
-        'target' => '_blank',
-        'autoXlFormat'=>true,
-            'clearBuffers' => true,
-            //'batchSize' => 10,
-            'filename' => "ОРГАНИЗАЦИИ_($date)",
-        'dropdownOptions' => [
-                   'label' => 'Экспортировать в файл ',
-                   'class' => 'btn btn-outline-secondary btn-primary ',
-                   'itemsBefore' => [
-                       '<div class="dropdown-header">Экспортировать найденную информацию ( максимум 1000 первых записей )</div>',
-                   ],
-               ],
+    // echo ExportMenu::widget([
+    //     'dataProvider' => $dataProvider,
+    //     'columns' =>  $searchModel->getExportColumns(),
+    //     'target' => '_blank',
+    //     'autoXlFormat'=>true,
+    //         'clearBuffers' => true,
+    //
+    //         'filename' => "ОРГАНИЗАЦИИ_($date)",
+    //     'dropdownOptions' => [
+    //                'label' => 'Экспортировать в файл ',
+    //                'class' => 'btn btn-outline-secondary btn-primary ',
+    //                'itemsBefore' => [
+    //                    '<div class="dropdown-header">Экспортировать найденную информацию ( максимум 100 первых записей )</div>',
+    //                ],
+    //            ],
+    //
+    // ]) . "\n".
 
 
 
-    ]) . "\n".
-    GridView::widget([
+
+   echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => $searchModel->getGridColumns(),
-        'options' =>['style' => 'width: 1800px;'],
-        'layout' => "{summary}\n{pager}\n{items}\n{summary}\n{pager}",
+         'options' =>['style' => 'width: 2000px;'],
+        'headerContainer' => ['class' => 'kv-table-header', 'style' => 'float-left'],
 
         'panel' => [
-                'type' => GridView::TYPE_PRIMARY,
+                'type' => 'primary',
                 'heading' => '<h1 class="panel-title"> Basics </h3>',
             ],
+            'panelTemplate' =>"{pager}\n{panelHeading}\n{panelBefore}\n{items}\n{pager}",
 
             'export' => [ 'label' => 'Экспортировать текущую страницу'  ],
-               'exportContainer' => [ 'class' => 'btn-group mr-2 me-2'  ],
-            // 'exportConfig' =>[
-            //   'filename'=>"ОРГАНИЗАЦИИ_($date)",
-            // ],
-
+               'exportContainer' => [ 'class' => '  btn-group left mr-2 me-2' ],
                // your toolbar can include the additional full export menu
                'toolbar' => [
                    '{export}',
                    '{toggleData}',
-
+                   'options' => ['class' => 'btn-group ', 'style'=>'float-left']
                ],
         'rowOptions' => function ($model, $key, $index, $grid){
           if(($model->id % 2) == 0) { return ['style' => 'background-color:#dce0e0;']; }
